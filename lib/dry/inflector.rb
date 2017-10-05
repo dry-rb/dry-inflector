@@ -26,6 +26,11 @@ module Dry
       inflections.singulars.apply_to(word)
     end
 
+    def underscore(input)
+      word = input.gsub(/::/, "/")
+      underscorize(word)
+    end
+
     def uncountable?(word)
       word.empty? || inflections.uncountables.include?(word.downcase)
     end
@@ -33,5 +38,13 @@ module Dry
     private
 
     attr_reader :inflections
+
+    def underscorize(word)
+      word.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      word.tr!("-", "_")
+      word.downcase!
+      word
+    end
   end
 end
