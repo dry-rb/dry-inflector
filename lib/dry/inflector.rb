@@ -17,6 +17,11 @@ module Dry
       inflections.plurals.apply_to(word)
     end
 
+    def singularize(word)
+      return word if uncountable?(word)
+      inflections.singulars.apply_to(word)
+    end
+
     def uncountable?(word)
       word.empty? || inflections.uncountables.include?(word.downcase)
     end
