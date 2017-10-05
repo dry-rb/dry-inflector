@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "set"
+
 module Dry
   # dry-inflector
   #
@@ -24,6 +26,20 @@ module Dry
       input.split("::").last
     end
 
+    def ordinalize(number)
+      abs_value = number.abs
+
+      if ORDINALIZE_TH.include?(abs_value % 100)
+        "#{number}th"
+      else
+        case abs_value % 10
+        when 1 then "#{number}st"
+        when 2 then "#{number}nd"
+        when 3 then "#{number}rd"
+        end
+      end
+    end
+
     def pluralize(word)
       return word if uncountable?(word)
       inflections.plurals.apply_to(word)
@@ -44,6 +60,8 @@ module Dry
     end
 
     private
+
+    ORDINALIZE_TH = (4..16).to_set.freeze
 
     attr_reader :inflections
 
