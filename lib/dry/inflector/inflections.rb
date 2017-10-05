@@ -11,9 +11,10 @@ module Dry
     class Inflections
       require "dry/inflector/inflections/defaults"
 
-      def self.build
+      def self.build(&blk)
         new do |inflect|
           Defaults.call(inflect)
+          blk.call(inflect) if block_given?
         end
       end
 
