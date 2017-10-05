@@ -2,10 +2,12 @@
 
 RSpec.describe Dry::Inflector do
   describe "#uncountable?" do
-    subject { described_class.new }
-
     it "returns true when empty string" do
       expect(subject.uncountable?(i(""))).to be(true)
+    end
+
+    it "returns true when blank string" do
+      expect(subject.uncountable?(i("   "))).to be(true)
     end
 
     it "returns true when word is present in list" do

@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#tableize" do
-    subject { described_class.new }
-
     it "pluralizes last word in snake_case strings: fancy_category => fancy_categories" do
       expect(subject.tableize(i("fancy_category"))).to eq("fancy_categories")
     end

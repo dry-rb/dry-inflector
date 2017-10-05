@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#demodulize" do
-    subject { described_class.new }
-
     it "demodulizes module name: DataMapper::Inflecto => Inflecto" do
       expect(subject.demodulize(i("DataMapper::Inflecto"))).to eq("Inflecto")
     end

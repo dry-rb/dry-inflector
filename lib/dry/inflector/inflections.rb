@@ -173,21 +173,6 @@ module Dry
         self
       end
 
-      # Clear all inflection rules
-      #
-      # @example
-      #
-      #   Inflecto.clear
-      #
-      # @return [self]
-      #
-      # @api private
-      #
-      def clear
-        initialize
-        self
-      end
-
       private
 
       # Add irregular inflection

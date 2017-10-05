@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#classify" do
-    subject { described_class.new }
-
     it "classifies data_mapper as DataMapper" do
       expect(subject.classify(i("data_mapper"))).to eq("DataMapper")
     end

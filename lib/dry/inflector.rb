@@ -52,28 +52,28 @@ module Dry
       end
     end
 
-    def pluralize(word)
-      return word if uncountable?(word)
-      inflections.plurals.apply_to(word)
+    def pluralize(input)
+      return input if uncountable?(input)
+      inflections.plurals.apply_to(input)
     end
 
-    def singularize(word)
-      return word if uncountable?(word)
-      inflections.singulars.apply_to(word)
+    def singularize(input)
+      return input if uncountable?(input)
+      inflections.singulars.apply_to(input)
     end
 
     def tableize(input)
-      word = input.gsub(/::/, "_")
-      pluralize(underscorize(word))
+      input = input.gsub(/::/, "_")
+      pluralize(underscorize(input))
     end
 
     def underscore(input)
-      word = input.gsub(/::/, "/")
-      underscorize(word)
+      input = input.gsub(/::/, "/")
+      underscorize(input)
     end
 
-    def uncountable?(word)
-      word.empty? || inflections.uncountables.include?(word.downcase)
+    def uncountable?(input)
+      !(input =~ /\A[[:space:]]*\z/).nil? || inflections.uncountables.include?(input.downcase)
     end
 
     private
@@ -82,12 +82,12 @@ module Dry
 
     attr_reader :inflections
 
-    def underscorize(word)
-      word.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-      word.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      word.tr!("-", "_")
-      word.downcase!
-      word
+    def underscorize(input)
+      input.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      input.tr!("-", "_")
+      input.downcase!
+      input
     end
   end
 end

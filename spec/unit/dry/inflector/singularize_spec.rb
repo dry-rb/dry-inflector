@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#singularize" do
-    subject { described_class.new }
-
     Fixtures::Singularize.cases.each do |plural, singular|
       it "pluralizes #{singular} => #{plural}" do
         expect(subject.singularize(i(plural))).to eq(singular)

@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#camelize" do
-    subject { described_class.new }
-
     it "camelizes data_mapper as DataMapper" do
       expect(subject.camelize(i("data_mapper"))).to eq("DataMapper")
     end

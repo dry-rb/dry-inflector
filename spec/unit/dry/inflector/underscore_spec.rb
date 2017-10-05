@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#underscore" do
-    subject { described_class.new }
-
     it "underscores DataMapper as data_mapper" do
       expect(subject.underscore(i("DataMapper"))).to eq("data_mapper")
     end

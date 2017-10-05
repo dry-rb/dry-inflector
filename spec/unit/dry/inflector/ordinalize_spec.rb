@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#ordinalize" do
-    subject { described_class.new }
-
     context "when number ends with digit 1" do
       it "adds -th suffix when number ends with 11" do
         [-1011, -111, -11, 11, 111, 1011].each do |number|

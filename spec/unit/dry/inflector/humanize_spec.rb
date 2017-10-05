@@ -2,8 +2,6 @@
 
 RSpec.describe Dry::Inflector do
   describe "#humanize" do
-    subject { described_class.new }
-
     it "replaces _ with space: humanizes employee_salary as Employee salary" do
       expect(subject.humanize(i("employee_salary"))).to eq("Employee salary")
     end
