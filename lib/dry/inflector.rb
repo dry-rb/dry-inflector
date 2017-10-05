@@ -10,8 +10,8 @@ module Dry
     require "dry/inflector/version"
     require "dry/inflector/inflections"
 
-    def initialize
-      @inflections = Inflections.build
+    def initialize(&blk)
+      @inflections = Inflections.build(&blk)
     end
 
     def camelize(input)
@@ -24,6 +24,14 @@ module Dry
 
     def demodulize(input)
       input.split("::").last
+    end
+
+    def humanize(input)
+      result = inflections.humans.apply_to(input)
+      result.gsub!(/_id\z/, "")
+      result.tr!("_", " ")
+      result.capitalize!
+      result
     end
 
     def ordinalize(number)
