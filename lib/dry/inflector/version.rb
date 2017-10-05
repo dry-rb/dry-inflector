@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Dry
-  module Inflector
+  class Inflector
     VERSION = "0.1.0"
   end
 end
