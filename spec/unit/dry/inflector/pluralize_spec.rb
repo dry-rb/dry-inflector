@@ -10,7 +10,7 @@ RSpec.describe Dry::Inflector do
       end
     end
 
-    Fixtures::Pluralize.pending do |singular, plural|
+    Fixtures::Pluralize.pending.each do |singular, plural|
       pending "missing exception or rule for #{singular} => #{plural}"
     end
   end
