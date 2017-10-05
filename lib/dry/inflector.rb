@@ -16,6 +16,10 @@ module Dry
       input.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
+    def dasherize(input)
+      input.tr("_", "-")
+    end
+
     def pluralize(word)
       return word if uncountable?(word)
       inflections.plurals.apply_to(word)
