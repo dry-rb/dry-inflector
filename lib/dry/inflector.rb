@@ -58,6 +58,11 @@ module Dry
       inflections.singulars.apply_to(word)
     end
 
+    def tableize(input)
+      word = input.gsub(/::/, "_")
+      pluralize(underscorize(word))
+    end
+
     def underscore(input)
       word = input.gsub(/::/, "/")
       underscorize(word)
