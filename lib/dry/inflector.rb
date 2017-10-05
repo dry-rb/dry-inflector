@@ -18,6 +18,10 @@ module Dry
       input.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
+    def classify(input)
+      camelize(singularize(input.sub(/.*\./, "")))
+    end
+
     def dasherize(input)
       input.tr("_", "-")
     end
