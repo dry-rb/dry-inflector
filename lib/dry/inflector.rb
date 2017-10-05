@@ -20,6 +20,10 @@ module Dry
       input.tr("_", "-")
     end
 
+    def demodulize(input)
+      input.split("::").last
+    end
+
     def pluralize(word)
       return word if uncountable?(word)
       inflections.plurals.apply_to(word)
