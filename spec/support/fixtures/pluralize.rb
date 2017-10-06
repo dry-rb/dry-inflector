@@ -11,6 +11,9 @@ module Fixtures
     end
 
     CASES = {
+      #
+      # Test cases from Inflecto
+      #
       "equipment"    => "equipment",
       "information"  => "information",
       "money"        => "money",
@@ -122,7 +125,7 @@ module Fixtures
       "bus"          => "buses",
       "rice"         => "rice",
 
-      # Some specs from Rails
+      # Some specs from Rails (still taken from Inflecto code base)
       "search"       => "searches",
       "switch"       => "switches",
       "fix"          => "fixes",
@@ -163,28 +166,223 @@ module Fixtures
       "shoe"         => "shoes",
       "horse"        => "horses",
       "edge"         => "edges",
-      "cow"          => "cows"
+      "cow"          => "cows",
+
+      #
+      # Test cases from Hanami::Utils
+      #
+
+      # um => a
+      "bacterium"   => "bacteria",
+      "agendum"     => "agenda",
+      "desideratum" => "desiderata",
+      "stratum"     => "strata",
+      "ovum"        => "ova",
+      "extremum"    => "extrema",
+      "candelabrum" => "candelabra",
+      "curriculum"  => "curricula",
+      "millennium"  => "millennia",
+      "referendum"  => "referenda",
+      "stadium"     => "stadia",
+      "memorandum"  => "memoranda",
+      "criterium"   => "criteria",
+      "perihelium"  => "perihelia",
+      "aphelium"    => "aphelia",
+      # on => a
+      "phenomenon"   => "phenomena",
+      "prolegomenon" => "prolegomena",
+      "noumenon"     => "noumena",
+      "organon"      => "organa",
+      # o => os
+      "albino"        => "albinos",
+      "archipelago"   => "archipelagos",
+      "armadillo"     => "armadillos",
+      "commando"      => "commandos",
+      "crescendo"     => "crescendos",
+      "fiasco"        => "fiascos",
+      "ditto"         => "dittos",
+      "dynamo"        => "dynamos",
+      "embryo"        => "embryos",
+      "ghetto"        => "ghettos",
+      "guano"         => "guanos",
+      "inferno"       => "infernos",
+      "jumbo"         => "jumbos",
+      "lumbago"       => "lumbagos",
+      "magneto"       => "magnetos",
+      "manifesto"     => "manifestos",
+      "medico"        => "medicos",
+      "octavo"        => "octavos",
+      "pro"           => "pros",
+      "quarto"        => "quartos",
+      "canto"         => "cantos",
+      "lingo"         => "lingos",
+      "generalissimo" => "generalissimos",
+      "stylo"         => "stylos",
+      "rhino"         => "rhinos",
+      "casino"        => "casinos",
+      "auto"          => "autos",
+      "macro"         => "macros",
+      "zero"          => "zeros",
+      "todo"          => "todos",
+      "studio"        => "studios",
+      "avocado"       => "avocados",
+      "zoo"           => "zoos",
+      "banjo"         => "banjos",
+      "cargo"         => "cargos",
+      "flamingo"      => "flamingos",
+      "fresco"        => "frescos",
+      "halo"          => "halos",
+      "mango"         => "mangos",
+      "memento"       => "mementos",
+      "motto"         => "mottos",
+      "tornado"       => "tornados",
+      "tuxedo"        => "tuxedos",
+      "volcano"       => "volcanos",
+      # The correct form from italian is: o => i. (Eg. contralto => contralti)
+      # English dictionaries are reporting o => s as a valid rule
+      #
+      # We're sticking to the latter rule, in order to not introduce exceptions
+      # for words that end with "o". See the previous category.
+      "solo"      => "solos",
+      "soprano"   => "sopranos",
+      "basso"     => "bassos",
+      "alto"      => "altos",
+      "contralto" => "contraltos",
+      "tempo"     => "tempos",
+      "piano"     => "pianos",
+      "virtuoso"  => "virtuosos",
+      # o => oes
+      "domino"   => "dominoes",
+      "echo"     => "echoes",
+      "embargo"  => "embargoes",
+      "hero"     => "heroes",
+      "mosquito" => "mosquitoes",
+      "potato"   => "potatoes",
+      "torpedo"  => "torpedos",
+      "veto"     => "vetos",
+      # a => ata
+      "anathema"  => "anathemata",
+      "enema"     => "enemata",
+      "oedema"    => "oedemata",
+      "bema"      => "bemata",
+      "enigma"    => "enigmata",
+      "sarcoma"   => "sarcomata",
+      "carcinoma" => "carcinomata",
+      "gumma"     => "gummata",
+      "schema"    => "schemata",
+      "charisma"  => "charismata",
+      "lemma"     => "lemmata",
+      "soma"      => "somata",
+      "diploma"   => "diplomata",
+      "lymphoma"  => "lymphomata",
+      "stigma"    => "stigmata",
+      "dogma"     => "dogmata",
+      "magma"     => "magmata",
+      "stoma"     => "stomata",
+      "drama"     => "dramata",
+      "melisma"   => "melismata",
+      "trauma"    => "traumata",
+      "edema"     => "edemata",
+      "miasma"    => "miasmata",
+      # us => uses
+      "apparatus"  => "apparatuses",
+      "impetus"    => "impetuses",
+      "prospectus" => "prospectuses",
+      "cantus"     => "cantuses",
+      "nexus"      => "nexuses",
+      "sinus"      => "sinuses",
+      "coitus"     => "coituses",
+      "plexus"     => "plexuses",
+      "hiatus"     => "hiatuses",
+      # man => mans
+      "human"      => "humans",
+      # ch => es
+      "witch"  => "witches",
+      "church" => "churches",
+      # ch => chs
+      "stomach" => "stomachs",
+      "epoch"   => "epochs",
+      # e => es,
+      "mustache" => "mustaches",
+      "verse"    => "verses",
+      "universe" => "universes",
+      "inverse"  => "inverses",
+      "advice"   => "advices",
+      "device"   => "devices",
+      # vowel + y => s
+      "boy" => "boys",
+      "way" => "ways",
+      # consonant + y => ies
+      "baby"       => "babies",
+      "lorry"      => "lorries",
+      "entity"     => "entities",
+      "repository" => "repositories",
+      # f => ves
+      "leaf"  => "leaves",
+      "hoof"  => "hooves",
+      "self"  => "selves",
+      "scarf" => "scarves",
+      # vocal + fe => ves
+      "knife" => "knives",
+      # eau => eaux
+      "beau"    => "beaux",
+      "bureau"  => "bureaux",
+      "tableau" => "tableaux",
+      # irregular
+      "cactus" => "cacti",
+      "foot"   => "feet",
+      "tooth"  => "teeth",
+      "goose"  => "geese",
+      "sex"    => "sexes",
+      # uncountable
+      "deer"      => "deer",
+      "means"     => "means",
+      # fallback (add s)
+      "giraffe"      => "giraffes",
+      "test"         => "tests",
+      "feature"      => "features",
+      "fixture"      => "fixtures",
+      "controller"   => "controllers",
+      "action"       => "actions",
+      "router"       => "routers",
+      "route"        => "routes",
+      "endpoint"     => "endpoints",
+      "string"       => "strings",
+      "view"         => "views",
+      "template"     => "templates",
+      "layout"       => "layouts",
+      "application"  => "applications",
+      "api"          => "apis",
+      "model"        => "models",
+      "mapper"       => "mappers",
+      "mapping"      => "mappings",
+      "table"        => "tables",
+      "attribute"    => "attributes",
+      "column"       => "columns",
+      "migration"    => "migrations",
+      "presenter"    => "presenters",
+      "wizard"       => "wizards",
+      "architecture" => "architectures",
+      "car"          => "cars",
+      "area"         => "areas",
+      # https://github.com/hanami/utils/issues/106
+      "album"        => "albums",
+      # https://github.com/hanami/utils/issues/173
+      "kitten"       => "kittens"
     }.freeze
 
     # Missing rule or exception?
     PENDING = {
       "virus"        => "viruses",
-      "torpedo"      => "torpedoes",
       "Swiss"        => "Swiss",
-      "goose"        => "geese",
       "milk"         => "milk",
       "plus"         => "plusses",
       "thesaurus"    => "thesauri",
       "thief"        => "thieves",
       "hovercraft"   => "hovercraft",
-      "zero"         => "zeroes",
       "rain"         => "rain",
-      "cactus"       => "cacti",
       "moose"        => "moose",
-      "criterion"    => "criteria",
-      "potato"       => "potatoes",
-      "phenomenon"   => "phenomena",
-      "hero"         => "heroes"
+      "criterion"    => "criteria"
     }.freeze
   end
 end

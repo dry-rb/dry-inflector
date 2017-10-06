@@ -22,24 +22,28 @@ module Dry
           inflect.plural(/\z/, "s")
           inflect.plural(/s\z/i, "s")
           inflect.plural(/(ax|test)is\z/i, '\1es')
-          inflect.plural(/(octop|vir)us\z/i, '\1i')
+          inflect.plural(/(.*)us\z/i, '\1uses')
+          inflect.plural(/(octop|vir|cact)us\z/i, '\1i')
           inflect.plural(/(octop|vir)i\z/i, '\1i')
           inflect.plural(/(alias|status)\z/i, '\1es')
-          inflect.plural(/(bu)s\z/i, '\1ses')
-          inflect.plural(/(buffal|tomat)o\z/i, '\1oes')
-          inflect.plural(/([ti])um\z/i, '\1a')
+          inflect.plural(/(buffal|domin|ech|embarg|her|mosquit|potat|tomat)o\z/i, '\1oes')
+          inflect.plural(/(?<!b)um\z/i, '\1a')
           inflect.plural(/([ti])a\z/i, '\1a')
           inflect.plural(/sis\z/i, "ses")
-          inflect.plural(/(?:([^f])fe|([lr])f)\z/i, '\1\2ves')
-          inflect.plural(/(hive)\z/i, '\1s')
+          inflect.plural(/(.*)(?:([^f]))f[e]*\z/i, '\1\2ves')
+          inflect.plural(/(hive|proof)\z/i, '\1s') # TODO: proof can be moved in the above regexp
           inflect.plural(/([^aeiouy]|qu)y\z/i, '\1ies')
           inflect.plural(/(x|ch|ss|sh)\z/i, '\1es')
+          inflect.plural(/(stoma|epo)ch\z/i, '\1chs')
           inflect.plural(/(matr|vert|ind)(?:ix|ex)\z/i, '\1ices')
           inflect.plural(/([m|l])ouse\z/i, '\1ice')
           inflect.plural(/([m|l])ice\z/i, '\1ice')
           inflect.plural(/^(ox)\z/i, '\1en')
           inflect.plural(/^(oxen)\z/i, '\1')
           inflect.plural(/(quiz)\z/i, '\1zes')
+          inflect.plural(/(.*)non\z/i, '\1na')
+          inflect.plural(/(.*)ma\z/i, '\1mata')
+          inflect.plural(/(.*)(eau|eaux)\z/, '\1eaux')
         end
 
         def self.singular(inflect)
@@ -73,14 +77,19 @@ module Dry
         def self.irregular(inflect)
           inflect.irregular("person", "people")
           inflect.irregular("man", "men")
+          inflect.irregular("human", "humans") # NOTE: this is here only to override the previous rule
           inflect.irregular("child", "children")
           inflect.irregular("sex", "sexes")
           inflect.irregular("move", "moves")
           inflect.irregular("cow", "cows")
+          inflect.irregular("foot", "feet")
+          inflect.irregular("tooth", "teeth")
+          inflect.irregular("goose", "geese")
+          inflect.irregular("forum", "forums") # FIXME: this is here because I need to fix the "um" regexp
         end
 
         def self.uncountable(inflect)
-          inflect.uncountable(%w[hovercraft moose milk rain Swiss grass equipment information rice money species series fish sheep jeans])
+          inflect.uncountable(%w[hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
         end
 
         private_class_method :plural, :singular, :irregular, :uncountable
