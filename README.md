@@ -42,7 +42,9 @@ inflector.dasherize("dry_inflector")  # => "dry-inflector"
 inflector.underscore("dry-inflector") # => "dry_inflector"
 
 inflector.demodulize("Dry::Inflector") # => "Inflector"
+
 inflector.humanize("dry_inflector")    # => "Dry inflector"
+inflector.humanize("author_id")        # => "Author"
 
 inflector.ordinalize(1)  # => "1st"
 inflector.ordinalize(2)  # => "2nd"

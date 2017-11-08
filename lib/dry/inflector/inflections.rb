@@ -11,6 +11,13 @@ module Dry
     class Inflections
       require "dry/inflector/inflections/defaults"
 
+      # Instantiate a set of inflection rules.
+      # It adds the default rules and the optional customizations, passed as a block.
+      #
+      # @param blk [Proc] the optional, custom rules
+      #
+      # @since 0.1.0
+      # @api private
       def self.build(&blk)
         new do |inflect|
           Defaults.call(inflect)
@@ -18,45 +25,45 @@ module Dry
         end
       end
 
-      # Return plurals
+      # Pluralization rules
       #
-      # @return [Array]
+      # @return [Dry::Inflector::Rules]
       #
+      # @since 0.1.0
       # @api private
-      #
       attr_reader :plurals
 
-      # Return singulars
+      # Singularization rules
       #
-      # @return [Array]
+      # @return [Dry::Inflector::Rules]
       #
+      # @since 0.1.0
       # @api private
-      #
       attr_reader :singulars
 
-      # Return uncountables
+      # Uncountable rules
       #
-      # @return [Array]
+      # @return [Set]
       #
+      # @since 0.1.0
       # @api private
-      #
       attr_reader :uncountables
 
-      # Return humans
+      # Human rules
       #
-      # @return [Array]
+      # @return [Dry::Inflector::Rules]
       #
+      # @since 0.1.0
       # @api private
-      #
-      #
       attr_reader :humans
 
-      # Initialize object
+      # Instantiate the rules
       #
-      # @return [undefined]
+      # @return [Dry::Inflector::Inflections]
+      # @yieldparam [self]
       #
+      # @since 0.1.0
       # @api private
-      #
       def initialize
         @plurals      = Rules.new
         @singulars    = Rules.new
@@ -66,124 +73,126 @@ module Dry
         yield(self) if block_given?
       end
 
-      # Add a new plural role
+      # Add a custom pluralization rule
       #
-      # Specifies a new pluralization rule and its replacement. The rule can either be a string or a regular expression.
+      # Specifies a new pluralization rule and its replacement.
+      # The rule can either be a string or a regular expression.
       # The replacement should always be a string that may include references to the matched data from the rule.
       #
-      # @param [String, Regexp] rule
-      # @param [String, Regexp] replacement
+      # @param rule [String, Regexp] the rule
+      # @param replacement [String] the replacement
       #
-      # @return [self]
-      #
-      # @api private
-      #
-      def plural(rule, replacement)
-        rule(rule, replacement, plurals)
-
-        self
-      end
-
-      # Add a new singular rule
-      #
-      # Specifies a new singularization rule and its replacement. The rule can either be a string or a regular expression.
-      # The replacement should always be a string that may include references to the matched data from the rule.
-      #
-      # @param [String, Regexp] rule
-      # @param [String, Regexp] replacement
-      #
-      # @return [self]
-      #
-      # @api private
-      #
-      def singular(rule, replacement)
-        rule(rule, replacement, singulars)
-
-        self
-      end
-
-      # Add a new irregular pluralization
-      #
-      # Specifies a new irregular that applies to both pluralization and singularization at the same time. This can only be used
-      # for strings, not regular expressions. You simply pass the irregular in singular and plural form.
+      # @since 0.1.0
       #
       # @example
+      #   require "dry/inflector"
       #
-      #   Inflecto.irregular('octopus', 'octopi')
-      #   Inflecto.irregular('person', 'people')
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.plural "virus", "viruses"
+      #   end
+      def plural(rule, replacement)
+        rule(rule, replacement, plurals)
+      end
+
+      # Add a custom singularization rule
       #
-      # @param [String] singular
-      # @param [String] plural
+      # Specifies a new singularization rule and its replacement.
+      # The rule can either be a string or a regular expression.
+      # The replacement should always be a string that may include references to the matched data from the rule.
       #
-      # @return [self]
+      # @param rule [String, Regexp] the rule
+      # @param replacement [String] the replacement
       #
-      # @api private
+      # @since 0.1.0
       #
+      # @example
+      #   require "dry/inflector"
+      #
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.singular "thieves", "thief"
+      #   end
+      def singular(rule, replacement)
+        rule(rule, replacement, singulars)
+      end
+
+      # Add a custom pluralization rule
+      #
+      # Specifies a new irregular that applies to both pluralization and singularization at the same time.
+      # This can only be used for strings, not regular expressions.
+      # You simply pass the irregular in singular and plural form.
+      #
+      # @param singular [String] the singular
+      # @param plural [String] the plural
+      #
+      # @since 0.1.0
+      #
+      # @example
+      #   require "dry/inflector"
+      #
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.singular "octopus", "octopi"
+      #   end
       def irregular(singular, plural)
         uncountables.delete(singular)
         uncountables.delete(plural)
 
         add_irregular(singular, plural, plurals)
         add_irregular(plural, singular, singulars)
-
-        self
       end
 
-      # Add uncountable words
+      # Add a custom rule for uncountable words
       #
       # Uncountable will not be inflected
       #
-      # @example
-      #
-      #   Inflecto.uncountable "money"
-      #   Inflecto.uncountable "money", "information"
-      #   Inflecto.uncountable %w( money information rice )
-      #
       # @param [Enumerable<String>] words
       #
-      # @return [self]
+      # @since 0.1.0
       #
-      # @api private
+      # @example
+      #   require "dry/inflector"
       #
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.uncountable "money"
+      #     inflections.uncountable "money", "information"
+      #     inflections.uncountable %w(money information rice)
+      #   end
       def uncountable(*words)
         uncountables.merge(words.flatten)
-
-        self
       end
 
-      # Add humanize rule
+      # Add a custom humanize rule
       #
       # Specifies a humanized form of a string by a regular expression rule or by a string mapping.
       # When using a regular expression based replacement, the normal humanize formatting is called after the replacement.
-      # When a string is used, the human form should be specified as desired (example: 'The name', not 'the_name')
+      # When a string is used, the human form should be specified as desired (example: `"The name"`, not `"the_name"`)
+      #
+      # @param rule [String, Regexp] the rule
+      # @param replacement [String] the replacement
+      #
+      # @since 0.1.0
       #
       # @example
-      #   Inflecto.human(/_cnt$/i, '\1_count')
-      #   Inflecto.human("legacy_col_person_name", "Name")
+      #   require "dry/inflector"
       #
-      # @param [String, Regexp] rule
-      # @param [String, Regexp] replacement
-      #
-      # @api private
-      #
-      # @return [self]
-      #
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.human(/_cnt$/i, '\1_count')
+      #     inflections.human("legacy_col_person_name", "Name")
+      #   end
       def human(rule, replacement)
         humans.insert(0, [rule, replacement])
-        self
       end
 
       private
 
       # Add irregular inflection
       #
-      # @param [String] rule
-      # @param [String] replacement
+      # @param rule [String] the rule
+      # @param replacement [String] the replacement
       #
       # @return [undefined]
       #
+      # @since 0.1.0
       # @api private
-      #
       def add_irregular(rule, replacement, target)
         head, *tail = rule.chars.to_a
         rule(/(#{head})#{tail.join}\z/i, '\1' + replacement[1..-1], target)
@@ -191,14 +200,12 @@ module Dry
 
       # Add a new rule
       #
-      # @param [String, Regexp] rule
-      # @param [String, Regexp] replacement
-      # @param [Array] target
+      # @param rule [String, Regexp] the rule
+      # @param replacement [String, Regexp] the replacement
+      # @param target [Dry::Inflector::Rules] the target
       #
-      # @return [undefined]
-      #
+      # @since 0.1.0
       # @api private
-      #
       def rule(rule, replacement, target)
         uncountables.delete(rule)
         uncountables.delete(replacement)

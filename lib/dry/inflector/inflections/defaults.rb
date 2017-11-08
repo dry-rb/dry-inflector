@@ -11,6 +11,8 @@ module Dry
       # rubocop:disable Metrics/AbcSize
       # rubocop:disable Metrics/MethodLength
       module Defaults
+        # @since 0.1.0
+        # @api private
         def self.call(inflect)
           plural(inflect)
           singular(inflect)
@@ -18,6 +20,8 @@ module Dry
           uncountable(inflect)
         end
 
+        # @since 0.1.0
+        # @api private
         def self.plural(inflect)
           inflect.plural(/\z/, "s")
           inflect.plural(/s\z/i, "s")
@@ -46,6 +50,8 @@ module Dry
           inflect.plural(/(.*)(eau|eaux)\z/, '\1eaux')
         end
 
+        # @since 0.1.0
+        # @api private
         def self.singular(inflect)
           inflect.singular(/s\z/i, "")
           inflect.singular(/(n)ews\z/i, '\1ews')
@@ -74,6 +80,8 @@ module Dry
           inflect.singular(/(database)s\z/i, '\1')
         end
 
+        # @since 0.1.0
+        # @api private
         def self.irregular(inflect)
           inflect.irregular("person", "people")
           inflect.irregular("man", "men")
@@ -88,6 +96,8 @@ module Dry
           inflect.irregular("forum", "forums") # FIXME: this is here because I need to fix the "um" regexp
         end
 
+        # @since 0.1.0
+        # @api private
         def self.uncountable(inflect)
           inflect.uncountable(%w[hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
         end
