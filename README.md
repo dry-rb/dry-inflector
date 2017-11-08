@@ -1,6 +1,21 @@
-# Dry::Inflector
+[gitter]: https://gitter.im/dry-rb/chat
+[gem]: https://img.shields.io/gem/v/dry-inflector.svg]
+[travis]: https://travis-ci.org/dry-rb/dry-inflector
+[gemnasium]: https://gemnasium.com/dry-rb/dry-inflector
+[codeclimate]: https://codeclimate.com/github/dry-rb/dry-inflector
+[coveralls]: https://coveralls.io/r/dry-rb/dry-inflector
+[inchpages]: http://inch-ci.org/github/dry-rb/dry-inflector
 
-Inflector for Ruby.
+# dry-inflector [![Join the chat at https://gitter.im/dry-rb/chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dry-rb/chat)
+
+[![Gem Version](https://badge.fury.io/rb/dry-inflector.svg)][gem]
+[![Build Status](https://travis-ci.org/dry-rb/dry-inflector.svg?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dry-rb/dry-inflector.svg)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dry-rb/dry-inflector/badges/gpa.svg)][codeclimate]
+[![Test Coverage](https://codeclimate.com/github/dry-rb/dry-inflector/badges/coverage.svg)][codeclimate]
+[![Inline docs](http://inch-ci.org/github/dry-rb/dry-inflector.svg?branch=master)][inchpages]
+
+dry-inflector is an inflector gem for Ruby.
 
 ## Installation
 
