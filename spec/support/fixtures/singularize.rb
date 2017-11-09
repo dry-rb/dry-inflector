@@ -133,7 +133,21 @@ module Fixtures
       "schedules" => "schedule",
       "arenas" => "arena",
       "spams" => "spam",
-      "rice" => "rice"
+      "rice" => "rice",
+
+      # ending with 'ss'
+      "address" => "address",
+      "boss" => "boss",
+      "class" => "class",
+      "glass" => "glass",
+      "kiss" => "kiss",
+
+      # ending with 'sses'
+      "addresses" => "address",
+      "bosses" => "boss",
+      "classes" => "class",
+      "glasses" => "glass",
+      "kisses" => "kiss"
     }.freeze
 
     # Missing exceptions or missing rules?
