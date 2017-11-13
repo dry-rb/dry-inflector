@@ -7,8 +7,12 @@ if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
   rubies = YAML.load(File.read(SPEC_ROOT.join('../.travis.yml')))['rvm']
   latest_mri = rubies.select { |v| v =~ /\A\d+\.\d+.\d+\z/ }.max
 
-  if RUBY_VERSION == latest_mri
+  if RUBY_VERSION >= latest_mri
     require 'simplecov'
+  end
+
+  SimpleCov.start do
+    add_filter '/spec/'
   end
 end
 
