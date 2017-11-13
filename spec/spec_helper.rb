@@ -9,10 +9,10 @@ if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
 
   if RUBY_VERSION >= latest_mri
     require 'simplecov'
-  end
 
-  SimpleCov.start do
-    add_filter '/spec/'
+    SimpleCov.start do
+      add_filter '/spec/'
+    end
   end
 end
 
