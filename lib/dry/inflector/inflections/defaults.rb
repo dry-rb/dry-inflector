@@ -99,7 +99,7 @@ module Dry
         # @since 0.1.0
         # @api private
         def self.uncountable(inflect)
-          inflect.uncountable(%w[hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
+          inflect.uncountable(%w[people hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
         end
 
         private_class_method :plural, :singular, :irregular, :uncountable
