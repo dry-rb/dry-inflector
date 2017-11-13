@@ -49,7 +49,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
     def camelize(input)
-      input.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
+      input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
     # Classify a string
@@ -65,7 +65,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.classify("books") # => "Book"
     def classify(input)
-      camelize(singularize(input.sub(/.*\./, "")))
+      camelize(singularize(input.to_s.sub(/.*\./, "")))
     end
 
     # Dasherize a string
@@ -81,7 +81,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.dasherize("dry_inflector") # => "dry-inflector"
     def dasherize(input)
-      input.tr("_", "-")
+      input.to_s.tr("_", "-")
     end
 
     # Demodulize a string
@@ -97,7 +97,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.demodulize("Dry::Inflector") # => "Inflector"
     def demodulize(input)
-      input.split("::").last
+      input.to_s.split("::").last
     end
 
     # Humanize a string
@@ -165,8 +165,9 @@ module Dry
     #   inflector.pluralize("book")  # => "books"
     #   inflector.pluralize("money") # => "money"
     def pluralize(input)
-      return input if uncountable?(input)
-      inflections.plurals.apply_to(input)
+      str = input.to_s
+      return str if uncountable?(str)
+      inflections.plurals.apply_to(str)
     end
 
     # Singularize a string
@@ -183,8 +184,9 @@ module Dry
     #   inflector.singularize("books") # => "book"
     #   inflector.singularize("money") # => "money"
     def singularize(input)
-      return input if uncountable?(input)
-      inflections.singulars.apply_to(input)
+      str = input.to_s
+      return str if uncountable?(str)
+      inflections.singulars.apply_to(str)
     end
 
     # Tableize a string
@@ -200,7 +202,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
-      input = input.gsub(/::/, "_")
+      input = input.to_s.gsub(/::/, "_")
       pluralize(underscorize(input))
     end
 
@@ -217,7 +219,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
-      input = input.gsub(/::/, "/")
+      input = input.to_s.gsub(/::/, "/")
       underscorize(input)
     end
 
@@ -229,7 +231,7 @@ module Dry
     # @since 0.1.0
     # @api private
     def uncountable?(input)
-      !(input =~ /\A[[:space:]]*\z/).nil? || inflections.uncountables.include?(input.downcase)
+      !(input =~ /\A[[:space:]]*\z/).nil? || inflections.uncountables.include?(input.to_s.downcase)
     end
 
     private
@@ -245,10 +247,10 @@ module Dry
     # @since 0.1.0
     # @api private
     def underscorize(input)
-      input.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      input.tr!("-", "_")
-      input.downcase!
+      input.to_s.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+      input.to_s.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      input.to_s.tr!("-", "_")
+      input.to_s.downcase!
       input
     end
   end
