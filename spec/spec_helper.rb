@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
+  require 'yaml'
+  rubies = YAML.load(File.read(SPEC_ROOT.join('../.travis.yml')))['rvm']
+  latest_mri = rubies.select { |v| v =~ /\A\d+\.\d+.\d+\z/ }.max
+
+  if RUBY_VERSION == latest_mri
+    require 'simplecov'
+  end
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

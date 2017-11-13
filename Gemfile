@@ -7,3 +7,6 @@ unless ENV["TRAVIS"]
   gem "byebug", require: false, platforms: :mri if RUBY_VERSION >= "2.3.0"
   gem "yard",   require: false
 end
+
+gem "simplecov"
+gem "codeclimate-test-reporter"
