@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+SPEC_ROOT = Pathname(__FILE__).dirname
+
 if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
   require 'yaml'
   rubies = YAML.load(File.read(SPEC_ROOT.join('../.travis.yml')))['rvm']
