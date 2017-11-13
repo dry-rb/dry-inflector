@@ -1,11 +1,12 @@
 language: ruby
 sudo: false
 cache: bundler
+bundler_args: --without tools development benchmarks
 script:
   - bundle exec rake spec
 after_success:
   - '[ -d coverage ] && bundle exec codeclimate-test-reporter'
 rvm:
-  - 2.3
-  - 2.4
+  - 2.3.4
+  - 2.4.1
   - jruby-9.1.13.0
