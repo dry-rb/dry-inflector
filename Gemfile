@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 gemspec
 
-group :development do
+group :tools do
   gem "byebug"
   gem "yard"
 end
