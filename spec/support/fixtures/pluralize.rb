@@ -131,7 +131,6 @@ module Fixtures
       "fix"          => "fixes",
       "box"          => "boxes",
       "process"      => "processes",
-      "address"      => "addresses",
       "case"         => "cases",
       "stack"        => "stacks",
       "wish"         => "wishes",
@@ -368,7 +367,21 @@ module Fixtures
       # https://github.com/hanami/utils/issues/106
       "album"        => "albums",
       # https://github.com/hanami/utils/issues/173
-      "kitten"       => "kittens"
+      "kitten"       => "kittens",
+
+      # Ending with 'ss'
+      "address" => "addresses",
+      "boss" => "bosses",
+      "class" => "classes",
+      "glass" => "glasses",
+      "kiss" => "kisses",
+
+      # Ending with 'sses'
+      "addresses" => "addresses",
+      "bosses" => "bosses",
+      "classes" => "classes",
+      "glasses" => "glasses",
+      "kisses" => "kisses"
     }.freeze
 
     # Missing rule or exception?
