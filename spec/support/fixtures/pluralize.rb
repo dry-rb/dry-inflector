@@ -321,6 +321,7 @@ module Fixtures
       "hoof"  => "hooves",
       "self"  => "selves",
       "scarf" => "scarves",
+      "thief" => "thieves",
       # vocal + fe => ves
       "knife" => "knives",
       # eau => eaux
@@ -336,6 +337,10 @@ module Fixtures
       # uncountable
       "deer"      => "deer",
       "means"     => "means",
+      "milk"      => "milk",
+      "hovercraft"   => "hovercraft",
+      "rain"         => "rain",
+      "moose"        => "moose",
       # fallback (add s)
       "giraffe"      => "giraffes",
       "test"         => "tests",
@@ -386,16 +391,11 @@ module Fixtures
 
     # Missing rule or exception?
     PENDING = {
-      "virus"        => "viruses",
-      "Swiss"        => "Swiss",
-      "milk"         => "milk",
-      "plus"         => "plusses",
-      "thesaurus"    => "thesauri",
-      "thief"        => "thieves",
-      "hovercraft"   => "hovercraft",
-      "rain"         => "rain",
-      "moose"        => "moose",
-      "criterion"    => "criteria"
+      "criterion" => "criteria",
+      "thesaurus" => "thesauri",
+      "plus"      => "plusses",
+      "virus"     => "viruses",
+      "Swiss"     => "Swiss"
     }.freeze
   end
 end

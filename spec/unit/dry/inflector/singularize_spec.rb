@@ -3,7 +3,7 @@
 RSpec.describe Dry::Inflector do
   describe "#singularize" do
     Fixtures::Singularize.cases.each do |plural, singular|
-      it "pluralizes #{singular} => #{plural}" do
+      it "singularizes #{plural} => #{singular}" do
         expect(subject.singularize(i(plural))).to eq(singular)
       end
     end

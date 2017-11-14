@@ -26,6 +26,7 @@ module Fixtures
       "rain" => "rain",
       "milk" => "milk",
       "moose" => "moose",
+      "geese" => "goose",
       "hovercraft" => "hovercraft",
       "matrices" => "matrix",
       "lives" => "life",
@@ -147,7 +148,10 @@ module Fixtures
       "bosses" => "boss",
       "classes" => "class",
       "glasses" => "glass",
-      "kisses" => "kiss"
+      "kisses" => "kiss",
+
+      # uncountable
+      "Swiss" => "Swiss"
     }.freeze
 
     # Missing exceptions or missing rules?
@@ -155,9 +159,7 @@ module Fixtures
       "cacti"     => "cactus",
       "cactuses"  => "cactus",
       "thesauri"  => "thesaurus",
-      "geese"     => "goose",
       "phenomena" => "phenomenon",
-      "Swiss" => "Swiss",
       "drives"    => "drive",
       "pluses"    => "plus",
       "thieves"   => "thief",
