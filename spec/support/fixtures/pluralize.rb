@@ -10,6 +10,20 @@ module Fixtures
       PENDING
     end
 
+    def self.irregular
+      IRREGULAR
+    end
+
+    IRREGULAR = {
+      "person" => "people",
+      "man"    => "men",
+      "child"  => "children",
+      "sex"    => "sexes",
+      "foot"   => "feet",
+      "tooth"  => "teeth",
+      "goose"  => "geese"
+    }.freeze
+
     CASES = {
       #
       # Test cases from Inflecto
@@ -30,8 +44,6 @@ module Fixtures
       "axis"         => "axes",
       "crisis"       => "crises",
       "testis"       => "testes",
-      "child"        => "children",
-      "person"       => "people",
       "tomato"       => "tomatoes",
       "buffalo"      => "buffaloes",
       "quiz"         => "quizzes",
@@ -53,7 +65,6 @@ module Fixtures
       "hive"         => "hives",
       "athlete"      => "athletes",
       "dwarf"        => "dwarves",
-      "man"          => "men",
       "woman"        => "women",
       "sportsman"    => "sportsmen",
       "branch"       => "branches",
@@ -330,10 +341,6 @@ module Fixtures
       "tableau" => "tableaux",
       # irregular
       "cactus" => "cacti",
-      "foot"   => "feet",
-      "tooth"  => "teeth",
-      "goose"  => "geese",
-      "sex"    => "sexes",
       # uncountable
       "deer"      => "deer",
       "means"     => "means",
@@ -387,7 +394,7 @@ module Fixtures
       "classes" => "classes",
       "glasses" => "glasses",
       "kisses" => "kisses"
-    }.freeze
+    }.merge(IRREGULAR).freeze
 
     # Missing rule or exception?
     PENDING = {

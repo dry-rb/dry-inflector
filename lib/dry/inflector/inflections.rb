@@ -132,12 +132,13 @@ module Dry
       #   inflector = Dry::Inflector.new do |inflections|
       #     inflections.singular "octopus", "octopi"
       #   end
-      def irregular(singular, plural)
+      def irregular(singular, plural) # rubocop:disable Metrics/AbcSize
         uncountables.delete(singular)
         uncountables.delete(plural)
 
-        add_irregular(singular, plural, plurals)
-        add_irregular(plural, singular, singulars)
+        plural(Regexp.new("(#{singular[0, 1]})#{singular[1..-1]}$", "i"), '\1' + plural[1..-1])
+        plural(Regexp.new("(#{plural[0, 1]})#{plural[1..-1]}$", "i"), '\1' + plural[1..-1])
+        singular(Regexp.new("(#{plural[0, 1]})#{plural[1..-1]}$", "i"), '\1' + singular[1..-1])
       end
 
       # Add a custom rule for uncountable words
@@ -183,20 +184,6 @@ module Dry
       end
 
       private
-
-      # Add irregular inflection
-      #
-      # @param rule [String] the rule
-      # @param replacement [String] the replacement
-      #
-      # @return [undefined]
-      #
-      # @since 0.1.0
-      # @api private
-      def add_irregular(rule, replacement, target)
-        head, *tail = rule.chars.to_a
-        rule(/(#{head})#{tail.join}\z/i, '\1' + replacement[1..-1], target)
-      end
 
       # Add a new rule
       #
