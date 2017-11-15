@@ -38,7 +38,7 @@ module Dry
 
     # Camelize a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the camelized string
     #
     # @since 0.1.0
@@ -49,12 +49,12 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
     def camelize(input)
-      input.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
+      input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
     # Classify a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the classified string
     #
     # @since 0.1.0
@@ -65,12 +65,12 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.classify("books") # => "Book"
     def classify(input)
-      camelize(singularize(input.sub(/.*\./, "")))
+      camelize(singularize(input.to_s.sub(/.*\./, "")))
     end
 
     # Dasherize a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the dasherized string
     #
     # @since 0.1.0
@@ -81,12 +81,12 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.dasherize("dry_inflector") # => "dry-inflector"
     def dasherize(input)
-      input.tr("_", "-")
+      input.to_s.tr("_", "-")
     end
 
     # Demodulize a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the demodulized string
     #
     # @since 0.1.0
@@ -97,12 +97,12 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.demodulize("Dry::Inflector") # => "Inflector"
     def demodulize(input)
-      input.split("::").last
+      input.to_s.split("::").last
     end
 
     # Humanize a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the humanized string
     #
     # @since 0.1.0
@@ -114,6 +114,7 @@ module Dry
     #   inflector.humanize("dry_inflector") # => "Dry inflector"
     #   inflector.humanize("author_id")     # => "Author"
     def humanize(input)
+      input = input.to_s
       result = inflections.humans.apply_to(input)
       result.gsub!(/_id\z/, "")
       result.tr!("_", " ")
@@ -153,7 +154,7 @@ module Dry
 
     # Pluralize a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the pluralized string
     #
     # @since 0.1.0
@@ -165,6 +166,7 @@ module Dry
     #   inflector.pluralize("book")  # => "books"
     #   inflector.pluralize("money") # => "money"
     def pluralize(input)
+      input = input.to_s
       return input if uncountable?(input)
       inflections.plurals.apply_to(input)
     end
@@ -183,13 +185,14 @@ module Dry
     #   inflector.singularize("books") # => "book"
     #   inflector.singularize("money") # => "money"
     def singularize(input)
+      input = input.to_s
       return input if uncountable?(input)
       inflections.singulars.apply_to(input)
     end
 
     # Tableize a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the tableized string
     #
     # @since 0.1.0
@@ -200,13 +203,13 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
-      input = input.gsub(/::/, "_")
+      input = input.to_s.gsub(/::/, "_")
       pluralize(underscorize(input))
     end
 
     # Underscore a string
     #
-    # @param input [String] the input
+    # @param input [String,Symbol] the input
     # @return [String] the underscored string
     #
     # @since 0.1.0
@@ -217,7 +220,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
-      input = input.gsub(/::/, "/")
+      input = input.to_s.gsub(/::/, "/")
       underscorize(input)
     end
 

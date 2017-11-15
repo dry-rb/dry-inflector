@@ -11,5 +11,10 @@ RSpec.describe Dry::Inflector do
     Fixtures::Pluralize.pending.each do |singular, plural|
       pending "missing exception or rule for #{singular} => #{plural}"
     end
+
+    it "accepts symbols" do
+      expect(subject.pluralize(:user)).to eq("users")
+      expect(subject.pluralize(:money)).to eq("money")
+    end
   end
 end

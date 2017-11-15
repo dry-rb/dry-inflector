@@ -18,5 +18,9 @@ RSpec.describe Dry::Inflector do
 
       expect(subject.humanize(i("questionary"))).to eq("Questionnaire")
     end
+
+    it "accepts symbols" do
+      expect(subject.humanize(:employee_salary)).to eq("Employee salary")
+    end
   end
 end

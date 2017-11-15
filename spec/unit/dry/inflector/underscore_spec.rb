@@ -33,5 +33,9 @@ RSpec.describe Dry::Inflector do
     it "underscores CLIRunner as cli_runner" do
       expect(subject.underscore(i("CLIRunner"))).to eq("cli_runner")
     end
+
+    it "accepts symbols" do
+      expect(subject.underscore(:DataMapper)).to eq("data_mapper")
+    end
   end
 end
