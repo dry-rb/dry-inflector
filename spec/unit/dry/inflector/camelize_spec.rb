@@ -17,5 +17,9 @@ RSpec.describe Dry::Inflector do
     it "camelizes data_mapper/associations/one_to_many as DataMapper::Associations::OneToMany" do
       expect(subject.camelize(i("data_mapper/associations/one_to_many"))).to eq("DataMapper::Associations::OneToMany")
     end
+
+    it "accepts symbols" do
+      expect(subject.camelize(:data_mapper)).to eq("DataMapper")
+    end
   end
 end

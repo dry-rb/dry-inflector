@@ -25,5 +25,9 @@ RSpec.describe Dry::Inflector do
     it "underscores CamelCase strings before pluralization: Enlarged::Testis => enlarged_testes" do
       expect(subject.tableize(i("Enlarged::Testis"))).to eq("enlarged_testes")
     end
+
+    it "accepts symbols" do
+      expect(subject.tableize(:fancy_category)).to eq("fancy_categories")
+    end
   end
 end
