@@ -10,6 +10,10 @@ RSpec.describe Dry::Inflector do
       expect(subject.constantize(i("::Module"))).to eq Module
     end
 
+    it "accepts symbols" do
+      expect(subject.constantize(i(:Module))).to eq Module
+    end
+
     it "constantizes nested constant Dry::Inflector::Inflections" do
       expect(subject.constantize(i("Dry::Inflector::Inflections"))).to eq Dry::Inflector::Inflections
     end

@@ -9,5 +9,9 @@ RSpec.describe Dry::Inflector do
     it "demodulizes string first: Admin::Post => post_id" do
       expect(subject.foreign_key(i("Admin::Post"))).to eq "post_id"
     end
+
+    it "accepts symbols" do
+      expect(subject.foreign_key(i(:message))).to eq "message_id"
+    end
   end
 end
