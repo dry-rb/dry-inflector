@@ -52,6 +52,26 @@ module Dry
       input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
+    # Find a constant with the name specified in the argument string
+    #
+    # The name is assumed to be the one of a top-level constant,
+    # constant scope of caller is ignored
+    #
+    # @param input [String,Symbol] the input
+    # @return [Class, Module] the class or module
+    #
+    # @since 0.1.0
+    #
+    # @example
+    #   require "dry/inflector"
+    #
+    #   inflector = Dry::Inflector.new
+    #   inflector.constantize("Module")         # => Module
+    #   inflector.constantize("Dry::Inflector") # => Dry::Inflector
+    def constantize(input)
+      Object.const_get(input)
+    end
+
     # Classify a string
     #
     # @param input [String,Symbol] the input
@@ -120,6 +140,20 @@ module Dry
       result.tr!("_", " ")
       result.capitalize!
       result
+    end
+
+    # Creates a foreign key name
+    #
+    # @param input [String, Symbol] the input
+    # @return [String] foreign key
+    #
+    # @example
+    #   require "dry/inflector"
+    #
+    #   inflector = Dry::Inflector.new
+    #   inflector.foreign_key("Message") => "message_id"
+    def foreign_key(input)
+      "#{underscorize(demodulize(input))}_id"
     end
 
     # Ordinalize a number
