@@ -2,6 +2,12 @@
 
 RSpec.describe Dry::Inflector do
   describe "#ordinalize" do
+    Fixtures::Ordinalize.cases.each do |n, expected|
+      it "ordinalizes #{n} => #{expected}" do
+        expect(subject.ordinalize(n)).to eq(expected)
+      end
+    end
+
     context "when number ends with digit 1" do
       it "adds -th suffix when number ends with 11" do
         [-1011, -111, -11, 11, 111, 1011].each do |number|
