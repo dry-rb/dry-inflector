@@ -27,9 +27,7 @@ RSpec.describe Dry::Inflector do
         class Baz < Bar; end
       end
 
-      expect do
-        subject.constantize(i("Foo::Baz::VAL"))
-      end.to_not raise_error(NameError)
+      expect(subject.constantize(i("Foo::Baz::VAL"))).to be(10)
     end
 
     it "searches in const_missing" do
