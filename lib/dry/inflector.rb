@@ -273,7 +273,7 @@ module Dry
 
     # @since 0.1.0
     # @api private
-    ORDINALIZE_TH = (4..16).each_with_object({}) { |n, ret| ret[n] = true }.freeze
+    ORDINALIZE_TH = (11..13).each_with_object({}) { |n, ret| ret[n] = true }.freeze
 
     # @since 0.1.0
     # @api private
