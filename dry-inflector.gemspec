@@ -8,8 +8,8 @@ require "dry/inflector/version"
 Gem::Specification.new do |spec|
   spec.name          = "dry-inflector"
   spec.version       = Dry::Inflector::VERSION
-  spec.authors       = ["Luca Guidi"]
-  spec.email         = ["me@lucaguidi.com"]
+  spec.authors       = ["Luca Guidi", "Andrii Savchenko", "Abinoam P. Marques Jr."]
+  spec.email         = ["me@lucaguidi.com", "andrey@aejis.eu", "abinoam@gmail.com"]
 
   spec.summary       = "DRY Inflector"
   spec.description   = "String inflections for dry-rb"
