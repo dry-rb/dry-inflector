@@ -8,6 +8,12 @@ RSpec.describe Dry::Inflector do
       end
     end
 
+    Fixtures::Pluralize.irregular.each do |singular, plural|
+      it "#{singular} => #{plural} is idempotent" do
+        expect(subject.pluralize(subject.pluralize(singular))).to eq(plural)
+      end
+    end
+
     Fixtures::Pluralize.pending.each do |singular, plural|
       pending "missing exception or rule for #{singular} => #{plural}"
     end

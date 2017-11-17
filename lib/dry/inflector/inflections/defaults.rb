@@ -89,8 +89,6 @@ module Dry
           inflect.irregular("human", "humans") # NOTE: this is here only to override the previous rule
           inflect.irregular("child", "children")
           inflect.irregular("sex", "sexes")
-          inflect.irregular("move", "moves")
-          inflect.irregular("cow", "cows")
           inflect.irregular("foot", "feet")
           inflect.irregular("tooth", "teeth")
           inflect.irregular("goose", "geese")
