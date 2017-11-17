@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "set"
-
 module Dry
   # dry-inflector
   #
@@ -172,16 +170,18 @@ module Dry
     #   inflector.ordinalize(3)  # => "3rd"
     #   inflector.ordinalize(10) # => "10th"
     #   inflector.ordinalize(23) # => "23rd"
-    def ordinalize(number)
+    def ordinalize(number) # rubocop:disable Metrics/MethodLength
       abs_value = number.abs
 
-      if ORDINALIZE_TH.include?(abs_value % 100)
+      if ORDINALIZE_TH.key?(abs_value % 100)
         "#{number}th"
       else
         case abs_value % 10
         when 1 then "#{number}st"
         when 2 then "#{number}nd"
         when 3 then "#{number}rd"
+        else
+          "#{number}th"
         end
       end
     end
@@ -273,7 +273,7 @@ module Dry
 
     # @since 0.1.0
     # @api private
-    ORDINALIZE_TH = (4..16).to_set.freeze
+    ORDINALIZE_TH = (4..16).each_with_object({}) { |n, ret| ret[n] = true }.freeze
 
     # @since 0.1.0
     # @api private
