@@ -1,5 +1,5 @@
 [gitter]: https://gitter.im/dry-rb/chat
-[gem]: https://img.shields.io/gem/v/dry-inflector.svg]
+[gem]: https://img.shields.io/gem/v/dry-inflector.svg
 [travis]: https://travis-ci.org/dry-rb/dry-inflector
 [gemnasium]: https://gemnasium.com/dry-rb/dry-inflector
 [codeclimate]: https://codeclimate.com/github/dry-rb/dry-inflector
