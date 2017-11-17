@@ -180,8 +180,7 @@ module Dry
         when 1 then "#{number}st"
         when 2 then "#{number}nd"
         when 3 then "#{number}rd"
-        else
-          "#{number}th"
+        else        "#{number}th"
         end
       end
     end
