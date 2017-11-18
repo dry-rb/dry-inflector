@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -- lib/* CHANGELOG.md LICENSE.md README.md dry-inflector.gemspec`.split($INPUT_RECORD_SEPARATOR)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
 
-  spec.add_development_dependency "bundler", "~> 1.15"
+  spec.add_development_dependency "bundler", "~> 1.16"
   spec.add_development_dependency "rake",    "~> 12.0"
-  spec.add_development_dependency "rspec",   "~> 3.6"
+  spec.add_development_dependency "rspec",   "~> 3.7"
   spec.add_development_dependency "rubocop", "~> 0.50.0"
 end
