@@ -34,19 +34,35 @@ module Dry
       @inflections = Inflections.build(&blk)
     end
 
-    # Camelize a string
+    # Lower camelize a string
     #
     # @param input [String,Symbol] the input
-    # @return [String] the camelized string
+    # @return [String] the lower camelized string
     #
-    # @since 0.1.0
+    # @since 0.1.2
     #
     # @example
     #   require "dry/inflector"
     #
     #   inflector = Dry::Inflector.new
-    #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
-    def camelize(input)
+    #   inflector.camelize_lower("dry/inflector") # => "Dry::Inflector"
+    def camelize_lower(input)
+      input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:_)(.)/) { Regexp.last_match(1).upcase }
+    end
+
+    # Upper camelize a string
+    #
+    # @param input [String,Symbol] the input
+    # @return [String] the upper camelized string
+    #
+    # @since 0.1.2
+    #
+    # @example
+    #   require "dry/inflector"
+    #
+    #   inflector = Dry::Inflector.new
+    #   inflector.camelize_upper("dry/inflector") # => "Dry::Inflector"
+    def camelize_upper(input)
       input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
