@@ -47,7 +47,9 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize_lower("dry/inflector") # => "Dry::Inflector"
     def camelize_lower(input)
-      input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:_)(.)/) { Regexp.last_match(1).upcase }
+      input.to_s.
+        gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.
+        gsub(/(?:_)(.)/) { Regexp.last_match(1).upcase }
     end
 
     # Upper camelize a string
@@ -63,7 +65,9 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize_upper("dry/inflector") # => "Dry::Inflector"
     def camelize_upper(input)
-      input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
+      input.to_s.
+        gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.
+        gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
     # Find a constant with the name specified in the argument string
