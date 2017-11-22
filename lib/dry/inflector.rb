@@ -70,6 +70,16 @@ module Dry
         gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
     end
 
+    # @since 0.1.2
+    # @api private
+    def camelize(input, uppercase_1st_letter = true, upper: true, lower: false)
+      if !upper || !uppercase_1st_letter || lower
+        camelize_lower(input)
+      else
+        camelize_upper(input)
+      end
+    end
+
     # Find a constant with the name specified in the argument string
     #
     # The name is assumed to be the one of a top-level constant,

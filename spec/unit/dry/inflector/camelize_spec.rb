@@ -2,24 +2,32 @@
 
 RSpec.describe Dry::Inflector do
   describe "#camelize" do
-    it "camelizes data_mapper as DataMapper" do
-      expect(subject.camelize(i("data_mapper"))).to eq("DataMapper")
+    describe %("first_name") do
+      it { expect(subject.camelize(i("first_name"))).to eq("FirstName") }
     end
 
-    it "camelizes merb as Merb" do
-      expect(subject.camelize(i("merb"))).to eq("Merb")
+    describe %("first_name", false) do
+      it { expect(subject.camelize(i("first_name"), false)).to eq("firstName") }
     end
 
-    it "camelizes data_mapper/resource as DataMapper::Resource" do
-      expect(subject.camelize(i("data_mapper/resource"))).to eq("DataMapper::Resource")
+    describe %("first_name", true) do
+      it { expect(subject.camelize(i("first_name"), true)).to eq("FirstName") }
     end
 
-    it "camelizes data_mapper/associations/one_to_many as DataMapper::Associations::OneToMany" do
-      expect(subject.camelize(i("data_mapper/associations/one_to_many"))).to eq("DataMapper::Associations::OneToMany")
+    describe %("first_name", upper: false) do
+      it { expect(subject.camelize(i("first_name"), upper: false)).to eq("firstName") }
     end
 
-    it "accepts symbols" do
-      expect(subject.camelize(:data_mapper)).to eq("DataMapper")
+    describe %("first_name", upper: true) do
+      it { expect(subject.camelize(i("first_name"), upper: true)).to eq("FirstName") }
+    end
+
+    describe %("first_name", lower: false) do
+      it { expect(subject.camelize(i("first_name"), lower: false)).to eq("FirstName") }
+    end
+
+    describe %("first_name", lower: true) do
+      it { expect(subject.camelize(i("first_name"), lower: true)).to eq("firstName") }
     end
   end
 end
