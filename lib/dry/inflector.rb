@@ -45,11 +45,9 @@ module Dry
     #   require "dry/inflector"
     #
     #   inflector = Dry::Inflector.new
-    #   inflector.camelize_lower("dry/inflector") # => "Dry::Inflector"
+    #   inflector.camelize_lower("data_mapper") # => "dataMapper"
     def camelize_lower(input)
-      input.to_s.
-        gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.
-        gsub(/(?:_)(.)/) { Regexp.last_match(1).upcase }
+      internal_camelize(input, /(?:_)(.)/)
     end
 
     # Upper camelize a string
@@ -63,11 +61,9 @@ module Dry
     #   require "dry/inflector"
     #
     #   inflector = Dry::Inflector.new
-    #   inflector.camelize_upper("dry/inflector") # => "Dry::Inflector"
+    #   inflector.camelize_upper("data_mapper") # => "DataMapper"
     def camelize_upper(input)
-      input.to_s.
-        gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.
-        gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
+      internal_camelize(input, /(?:\A|_)(.)/)
     end
 
     # @since 0.1.2
@@ -316,6 +312,14 @@ module Dry
       input.tr!("-", "_")
       input.downcase!
       input
+    end
+
+    # @since 0.1.2
+    # @api private
+    def internal_camelize(input, second_regex)
+      input.to_s.
+        gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.
+        gsub(second_regex) { Regexp.last_match(1).upcase }
     end
   end
 end
