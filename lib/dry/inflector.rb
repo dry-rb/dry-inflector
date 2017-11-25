@@ -134,7 +134,7 @@ module Dry
     def humanize(input)
       input = input.to_s
       result = inflections.humans.apply_to(input)
-      result.gsub!(/_id\z/, "")
+      result.chomp!("_id")
       result.tr!("_", " ")
       result.capitalize!
       result
