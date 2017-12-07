@@ -21,5 +21,12 @@ RSpec.describe Dry::Inflector do
     it "accepts symbols" do
       expect(subject.camelize(:data_mapper)).to eq("DataMapper")
     end
+
+    it "handle acronyms" do
+      expect(subject.camelize(i("json"))).to eql("JSON")
+      expect(subject.camelize(i("http_error"))).to eql("HTTPError")
+      expect(subject.camelize(i("openssl/hmac"))).to eql("OpenSSL::HMAC")
+      expect(subject.camelize(i("openssl/digest"))).to eql("OpenSSL::Digest")
+    end
   end
 end
