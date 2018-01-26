@@ -97,9 +97,12 @@ module Dry
 
         # @since 0.1.0
         # @api private
+        require_relative './dictionary/uncountable'
+
         def self.uncountable(inflect)
-          inflect.uncountable(%w[hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
+          inflect.uncountable(Dictionary::Uncountable.list)
         end
+
 
         private_class_method :plural, :singular, :irregular, :uncountable
       end
