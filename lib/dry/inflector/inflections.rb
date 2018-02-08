@@ -57,6 +57,8 @@ module Dry
       # @api private
       attr_reader :humans
 
+      attr_reader :acronyms
+
       # Instantiate the rules
       #
       # @return [Dry::Inflector::Inflections]
@@ -69,6 +71,7 @@ module Dry
         @singulars    = Rules.new
         @humans       = Rules.new
         @uncountables = Set[]
+        @acronyms     = Hash.new
 
         yield(self) if block_given?
       end
@@ -158,6 +161,10 @@ module Dry
       #   end
       def uncountable(*words)
         uncountables.merge(words.flatten)
+      end
+
+      def acronym(hash)
+        acronyms.merge!(hash)
       end
 
       # Add a custom humanize rule

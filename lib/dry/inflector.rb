@@ -47,7 +47,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
     def camelize(input)
-      input.to_s.gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.gsub(/(?:\A|_)(.)/) { Regexp.last_match(1).upcase }
+      input.to_s.gsub(/\/([a-zA-Z]+)/) { "::#{check_for_acronyms(Regexp.last_match(1))}" }.gsub(/(?:\A|_)([a-zA-Z]+)/) { check_for_acronyms(Regexp.last_match(1)) }
     end
 
     # Find a constant with the name specified in the argument string
@@ -266,6 +266,18 @@ module Dry
     # @api private
     def uncountable?(input)
       !(input =~ /\A[[:space:]]*\z/).nil? || inflections.uncountables.include?(input.downcase)
+    end
+
+    def check_for_acronyms(word)
+      acronyms?(word) ? acronyms(word) : word.capitalize
+    end
+
+    def acronyms?(input)
+      inflections.acronyms.keys.include?(input)
+    end
+
+    def acronyms(input)
+      inflections.acronyms[input]
     end
 
     private
