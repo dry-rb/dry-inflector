@@ -164,7 +164,7 @@ module Dry
       end
 
       def acronym(hash)
-        acronyms.merge!(hash)
+        @acronyms = acronyms.merge(hash)
       end
 
       # Add a custom humanize rule
