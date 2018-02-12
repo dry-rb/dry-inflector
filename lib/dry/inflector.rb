@@ -136,8 +136,10 @@ module Dry
       result = inflections.humans.apply_to(input)
       result.chomp!("_id")
       result.tr!("_", " ")
-      result.capitalize!
-      result
+      match = /(?<separator>\W)/.match(result)
+      separator = match ? match[:separator] : DEFAULT_SEPARATOR
+      enum = result.split(separator).map
+      enum.with_index { |word, index| index.zero? ? acronyms_or_capitalize(word) : acronyms_or_word(word) }.join(separator)
     end
 
     # Creates a foreign key name
@@ -274,6 +276,8 @@ module Dry
     # @api private
     ORDINALIZE_TH = (11..13).each_with_object({}) { |n, ret| ret[n] = true }.freeze
 
+    DEFAULT_SEPARATOR = " "
+
     # @since 0.1.0
     # @api private
     attr_reader :inflections
@@ -291,6 +295,10 @@ module Dry
     # @api private
     def acronyms_or_capitalize(word)
       inflections.acronyms.fetch(word) { word.capitalize }
+    end
+
+    def acronyms_or_word(word)
+      inflections.acronyms.fetch(word) { word }
     end
   end
 end
