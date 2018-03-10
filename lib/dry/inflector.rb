@@ -47,7 +47,10 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
     def camelize(input)
-      input.to_s.gsub(/\/([a-zA-Z]+)/) { "::#{acronyms_or_capitalize(Regexp.last_match(1))}" }.gsub(/(?:\A|_)([a-zA-Z]+)/) { acronyms_or_capitalize(Regexp.last_match(1)) }
+      input = input.to_s.dup
+      input.gsub!(%r{/([a-zA-Z]+)}) { "::#{acronyms_or_capitalize(Regexp.last_match(1))}" }
+      input.gsub!(/(?:\A|_)([a-zA-Z]+)/) { acronyms_or_capitalize(Regexp.last_match(1)) }
+      input
     end
 
     # Find a constant with the name specified in the argument string
@@ -255,8 +258,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
-      input = input.to_s.gsub(/::/, "/")
-      underscorize(input)
+      input.to_s.split("::").map { |part| underscorize(part) }.join("/")
     end
 
     # Check if the input is an uncountable word
@@ -276,7 +278,7 @@ module Dry
     # @api private
     ORDINALIZE_TH = (11..13).each_with_object({}) { |n, ret| ret[n] = true }.freeze
 
-    DEFAULT_SEPARATOR = " "
+    DEFAULT_SEPARATOR = " ".freeze
 
     # @since 0.1.0
     # @api private
@@ -285,8 +287,16 @@ module Dry
     # @since 0.1.0
     # @api private
     def underscorize(input)
-      input.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      input.gsub!(/([A-Z]+)([A-Z][a-z]+)/) do |match|
+        inflections.acronyms_inversed.fetch(match) do
+          "#{Regexp.last_match(1)}_#{Regexp.last_match(2)}"
+        end
+      end
+      input.gsub!(/([A-Z]?[a-z\d]+)([A-Z]+)/) do |match|
+        inflections.acronyms_inversed.fetch(match) do
+          "#{Regexp.last_match(1)}_#{Regexp.last_match(2)}"
+        end
+      end
       input.tr!("-", "_")
       input.downcase!
       input
@@ -297,8 +307,9 @@ module Dry
       inflections.acronyms.fetch(word) { word.capitalize }
     end
 
+    # @api private
     def acronyms_or_word(word)
-      inflections.acronyms.fetch(word) { word }
+      inflections.acronyms.fetch(word, word)
     end
   end
 end

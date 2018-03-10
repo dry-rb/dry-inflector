@@ -59,6 +59,8 @@ module Dry
 
       attr_reader :acronyms
 
+      attr_reader :acronyms_inversed
+
       # Instantiate the rules
       #
       # @return [Dry::Inflector::Inflections]
@@ -165,6 +167,7 @@ module Dry
 
       def acronym(hash)
         @acronyms = acronyms.merge(hash)
+        @acronyms_inversed = @acronyms.invert
       end
 
       # Add a custom humanize rule
