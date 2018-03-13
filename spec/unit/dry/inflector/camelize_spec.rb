@@ -22,11 +22,33 @@ RSpec.describe Dry::Inflector do
       expect(subject.camelize(:data_mapper)).to eq("DataMapper")
     end
 
-    it "handle acronyms" do
+    it "handles acronyms" do
       expect(subject.camelize(i("json"))).to eql("JSON")
       expect(subject.camelize(i("http_error"))).to eql("HTTPError")
       expect(subject.camelize(i("openssl/hmac"))).to eql("OpenSSL::HMAC")
       expect(subject.camelize(i("openssl/digest"))).to eql("OpenSSL::Digest")
+    end
+
+    context "custom acronyms" do
+      subject do
+        Dry::Inflector.new do |inflect|
+          inflect.acronym(
+            "ip" => "IP",
+            "html" => "HTML",
+            "xml" => "XML",
+            "bsd" => "BSD"
+          )
+        end
+      end
+
+      it "handles acronyms" do
+        expect(subject.camelize(i("ip"))).to eql("IP")
+        expect(subject.camelize(i("ip_sec"))).to eql("IPSec")
+        expect(subject.camelize(i("html_tidy"))).to eql("HTMLTidy")
+        expect(subject.camelize(i("html_tidy_generator"))).to eql("HTMLTidyGenerator")
+        expect(subject.camelize(i("force_xml_controller"))).to eql("ForceXMLController")
+        expect(subject.camelize(i("free_bsd"))).to eql("FreeBSD")
+      end
     end
   end
 end
