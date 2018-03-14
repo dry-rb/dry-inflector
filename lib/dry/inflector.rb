@@ -47,9 +47,13 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
     def camelize(input)
-      input = input.to_s.dup
-      input.gsub!(%r{/([a-zA-Z]+)}) { "::#{acronyms_or_capitalize(Regexp.last_match(1))}" }
-      input.gsub!(/(?:\A|_)([a-zA-Z]+)/) { acronyms_or_capitalize(Regexp.last_match(1)) }
+      input = input.to_s.sub(/^[a-z\d]*/) { |match| inflections.acronyms[match] || match.capitalize }
+      input.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
+        m1 = Regexp.last_match(1)
+        m2 = Regexp.last_match(2)
+        "#{m1}#{inflections.acronyms[m2] || m2.capitalize}"
+      end
+      input.gsub!("/", "::")
       input
     end
 
@@ -142,7 +146,14 @@ module Dry
       match = /(?<separator>\W)/.match(result)
       separator = match ? match[:separator] : DEFAULT_SEPARATOR
       enum = result.split(separator).map
-      enum.with_index { |word, index| index.zero? ? acronyms_or_capitalize(word) : acronyms_or_word(word) }.join(separator)
+      enum.with_index { |word, index|
+        inflections.acronyms[word.downcase] ||
+          if index.zero?
+            word.capitalize
+          else
+            word
+          end
+      }.join(separator)
     end
 
     # Creates a foreign key name
@@ -156,7 +167,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.foreign_key("Message") => "message_id"
     def foreign_key(input)
-      "#{underscorize(demodulize(input))}_id"
+      "#{underscore(demodulize(input))}_id"
     end
 
     # Ordinalize a number
@@ -242,7 +253,7 @@ module Dry
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
       input = input.to_s.gsub(/::/, "_")
-      pluralize(underscorize(input))
+      pluralize(underscore(input))
     end
 
     # Underscore a string
@@ -258,7 +269,17 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
-      input.to_s.split("::").map { |part| underscorize(part) }.join("/")
+      input = input.to_s.gsub("::", "/")
+      input.gsub!(inflections.acronyms_regex) do
+        m1 = Regexp.last_match(1)
+        m2 = Regexp.last_match(2)
+        "#{m1 ? '_' : '' }#{m2.downcase}"
+      end
+      input.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      input.tr!("-", "_")
+      input.downcase!
+      input
     end
 
     # Check if the input is an uncountable word
@@ -283,33 +304,5 @@ module Dry
     # @since 0.1.0
     # @api private
     attr_reader :inflections
-
-    # @since 0.1.0
-    # @api private
-    def underscorize(input)
-      input.gsub!(/([A-Z]+)([A-Z][a-z]+)/) do |match|
-        inflections.acronyms_inversed.fetch(match) do
-          "#{Regexp.last_match(1)}_#{Regexp.last_match(2)}"
-        end
-      end
-      input.gsub!(/([A-Z]?[a-z\d]+)([A-Z]+)/) do |match|
-        inflections.acronyms_inversed.fetch(match) do
-          "#{Regexp.last_match(1)}_#{Regexp.last_match(2)}"
-        end
-      end
-      input.tr!("-", "_")
-      input.downcase!
-      input
-    end
-
-    # @api private
-    def acronyms_or_capitalize(word)
-      inflections.acronyms.fetch(word) { word.capitalize }
-    end
-
-    # @api private
-    def acronyms_or_word(word)
-      inflections.acronyms.fetch(word, word)
-    end
   end
 end

@@ -59,7 +59,7 @@ module Dry
 
       attr_reader :acronyms
 
-      attr_reader :acronyms_inversed
+      attr_reader :acronyms_regex
 
       # Instantiate the rules
       #
@@ -74,6 +74,7 @@ module Dry
         @humans       = Rules.new
         @uncountables = Set[]
         @acronyms     = Hash.new
+        define_acronym_regex_patterns
 
         yield(self) if block_given?
       end
@@ -165,9 +166,9 @@ module Dry
         uncountables.merge(words.flatten)
       end
 
-      def acronym(hash)
-        @acronyms = acronyms.merge(hash)
-        @acronyms_inversed = @acronyms.invert
+      def acronym(*words)
+        words.each { |word| @acronyms[word.downcase] = word }
+        define_acronym_regex_patterns
       end
 
       # Add a custom humanize rule
@@ -221,6 +222,11 @@ module Dry
         uncountables.delete(replacement)
 
         target.insert(0, [rule, replacement])
+      end
+
+      def define_acronym_regex_patterns
+        regex = @acronyms.empty? ? /(?=a)b/ : /#{@acronyms.values.join("|")}/
+        @acronyms_regex = /(?:(?<=([A-Za-z\d]))|\b)(#{regex})(?=\b|[^a-z])/
       end
     end
   end

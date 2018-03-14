@@ -32,12 +32,7 @@ RSpec.describe Dry::Inflector do
     context "custom acronyms" do
       subject do
         Dry::Inflector.new do |inflect|
-          inflect.acronym(
-            "ip" => "IP",
-            "html" => "HTML",
-            "xml" => "XML",
-            "bsd" => "BSD"
-          )
+          inflect.acronym("IP", "HTML", "XML", "BSD")
         end
       end
 

@@ -103,13 +103,7 @@ module Dry
         end
 
         def self.acronyms(inflect)
-          default_acronyms = {
-            'json' => 'JSON',
-            'http' => 'HTTP',
-            'openssl' => 'OpenSSL',
-            'hmac' => 'HMAC'
-          }
-          inflect.acronym(default_acronyms)
+          inflect.acronym(*%w[JSON HTTP OpenSSL HMAC])
         end
 
         private_class_method :plural, :singular, :irregular, :uncountable, :acronyms

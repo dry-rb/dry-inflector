@@ -23,7 +23,7 @@ RSpec.describe Dry::Inflector do
       expect(subject.humanize(:employee_salary)).to eq("Employee salary")
     end
 
-    it "handle acronyms" do
+    it "handles acronyms" do
       expect(subject.humanize(i("json"))).to eql("JSON")
       expect(subject.humanize(i("http_error"))).to eql("HTTP error")
       expect(subject.humanize(i("openssl/hmac"))).to eql("OpenSSL/HMAC")
