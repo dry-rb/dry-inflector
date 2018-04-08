@@ -2,6 +2,7 @@
 
 require "set"
 require "dry/inflector/rules"
+require "dry/inflector/acronyms"
 
 module Dry
   class Inflector
@@ -57,9 +58,13 @@ module Dry
       # @api private
       attr_reader :humans
 
+      # Acronyms
+      #
+      # @return [Dry::Inflector::Acronyms]
+      #
+      # @since 0.1.2
+      # @api private
       attr_reader :acronyms
-
-      attr_reader :acronyms_regex
 
       # Instantiate the rules
       #
@@ -73,8 +78,7 @@ module Dry
         @singulars    = Rules.new
         @humans       = Rules.new
         @uncountables = Set[]
-        @acronyms     = Hash.new
-        define_acronym_regex_patterns
+        @acronyms     = Acronyms.new
 
         yield(self) if block_given?
       end
@@ -166,9 +170,26 @@ module Dry
         uncountables.merge(words.flatten)
       end
 
+      # Add one or more acronyms
+      #
+      # Acronyms affect how basic operations are performed, such
+      # as camelize/underscore.
+      #
+      # @param words [Array<String>] a list of acronyms
+      #
+      # @since 0.1.2
+      #
+      # @example
+      #   require "dry/inflector"
+      #
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.acronym "HTML"
+      #   end
+      #
+      #   inflector.camelize("html")        # => "HTML"
+      #   inflector.underscore("HTMLIsFun") # => "html_is_fun"
       def acronym(*words)
-        words.each { |word| @acronyms[word.downcase] = word }
-        define_acronym_regex_patterns
+        words.each { |word| @acronyms.add(word.downcase, word) }
       end
 
       # Add a custom humanize rule
@@ -222,11 +243,6 @@ module Dry
         uncountables.delete(replacement)
 
         target.insert(0, [rule, replacement])
-      end
-
-      def define_acronym_regex_patterns
-        regex = @acronyms.empty? ? /(?=a)b/ : /#{@acronyms.values.join("|")}/
-        @acronyms_regex = /(?:(?<=([A-Za-z\d]))|\b)(#{regex})(?=\b|[^a-z])/
       end
     end
   end

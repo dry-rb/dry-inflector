@@ -47,11 +47,12 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
     def camelize(input)
-      input = input.to_s.sub(/^[a-z\d]*/) { |match| inflections.acronyms[match] || match.capitalize }
+      input = input.to_s.dup
+      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match) }
       input.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
-        "#{m1}#{inflections.acronyms[m2] || m2.capitalize}"
+        "#{m1}#{inflections.acronyms.apply_to(m2)}"
       end
       input.gsub!("/", "::")
       input
@@ -145,14 +146,8 @@ module Dry
       result.tr!("_", " ")
       match = /(?<separator>\W)/.match(result)
       separator = match ? match[:separator] : DEFAULT_SEPARATOR
-      enum = result.split(separator).map
-      enum.with_index { |word, index|
-        inflections.acronyms[word.downcase] ||
-          if index.zero?
-            word.capitalize
-          else
-            word
-          end
+      result.split(separator).map.with_index { |word, index|
+        inflections.acronyms.apply_to(word, index.zero?)
       }.join(separator)
     end
 
@@ -270,7 +265,7 @@ module Dry
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
       input = input.to_s.gsub("::", "/")
-      input.gsub!(inflections.acronyms_regex) do
+      input.gsub!(inflections.acronyms.regex) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
         "#{m1 ? '_' : '' }#{m2.downcase}"

@@ -102,6 +102,8 @@ module Dry
           inflect.uncountable(%w[hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
         end
 
+        # @since 0.1.2
+        # @api private
         def self.acronyms(inflect)
           inflect.acronym(*%w[JSON HTTP OpenSSL HMAC])
         end
