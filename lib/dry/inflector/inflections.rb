@@ -2,6 +2,7 @@
 
 require "set"
 require "dry/inflector/rules"
+require "dry/inflector/acronyms"
 
 module Dry
   class Inflector
@@ -57,6 +58,14 @@ module Dry
       # @api private
       attr_reader :humans
 
+      # Acronyms
+      #
+      # @return [Dry::Inflector::Acronyms]
+      #
+      # @since 0.1.2
+      # @api private
+      attr_reader :acronyms
+
       # Instantiate the rules
       #
       # @return [Dry::Inflector::Inflections]
@@ -69,6 +78,7 @@ module Dry
         @singulars    = Rules.new
         @humans       = Rules.new
         @uncountables = Set[]
+        @acronyms     = Acronyms.new
 
         yield(self) if block_given?
       end
@@ -158,6 +168,28 @@ module Dry
       #   end
       def uncountable(*words)
         uncountables.merge(words.flatten)
+      end
+
+      # Add one or more acronyms
+      #
+      # Acronyms affect how basic operations are performed, such
+      # as camelize/underscore.
+      #
+      # @param words [Array<String>] a list of acronyms
+      #
+      # @since 0.1.2
+      #
+      # @example
+      #   require "dry/inflector"
+      #
+      #   inflector = Dry::Inflector.new do |inflections|
+      #     inflections.acronym "HTML"
+      #   end
+      #
+      #   inflector.camelize("html")        # => "HTML"
+      #   inflector.underscore("HTMLIsFun") # => "html_is_fun"
+      def acronym(*words)
+        words.each { |word| @acronyms.add(word.downcase, word) }
       end
 
       # Add a custom humanize rule
