@@ -294,7 +294,9 @@ module Dry
     # @api private
     ORDINALIZE_TH = (11..13).each_with_object({}) { |n, ret| ret[n] = true }.freeze
 
-    DEFAULT_SEPARATOR = " ".freeze
+    # @since 0.1.2
+    # @api private
+    DEFAULT_SEPARATOR = " "
 
     # @since 0.1.0
     # @api private
