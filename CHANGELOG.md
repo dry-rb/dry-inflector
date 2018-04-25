@@ -8,7 +8,7 @@ Inflector for Ruby
 
 - [Gustavo Caso & Nikita Shilnikov] Added support for acronyms
 
-[Compare v0.1.1...master](https://github.com/dry-rb/dry-inflector/compare/v0.1.1...master)
+[Compare v0.1.1...v0.1.2](https://github.com/dry-rb/dry-inflector/compare/v0.1.1...v0.1.2)
 
 ## v0.1.1 - 2017-11-18
 ### Fixed
