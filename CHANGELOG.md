@@ -2,7 +2,7 @@
 
 Inflector for Ruby
 
-## v0.1.2 - to be released
+## v0.1.2 - 2018-04-25
 
 ### Added
 
