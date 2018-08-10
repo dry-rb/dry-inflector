@@ -15,5 +15,9 @@ RSpec.describe Dry::Inflector do
     it "accepts symbols" do
       expect(subject.camelize_upper(:data_mapper)).to eq("DataMapper")
     end
+
+    it "have alias" do
+      expect(subject.camelize("camelize_upper")).to eq("CamelizeUpper")
+    end
   end
 end

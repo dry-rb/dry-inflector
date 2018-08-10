@@ -66,15 +66,8 @@ module Dry
       internal_camelize(input, /(?:\A|_)(.)/)
     end
 
-    # @since 0.1.2
-    # @api private
-    def camelize(input, uppercase_1st_letter = true, upper: true, lower: false)
-      if !upper || !uppercase_1st_letter || lower
-        camelize_lower(input)
-      else
-        camelize_upper(input)
-      end
-    end
+    alias :camelize :camelize_upper
+
 
     # Find a constant with the name specified in the argument string
     #
