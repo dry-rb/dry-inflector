@@ -34,29 +34,41 @@ module Dry
       @inflections = Inflections.build(&blk)
     end
 
-    # Camelize a string
+    # Lower camelize a string
     #
     # @param input [String,Symbol] the input
-    # @return [String] the camelized string
+    # @return [String] the lower camelized string
     #
-    # @since 0.1.0
+    # @since 0.1.2
     #
     # @example
     #   require "dry/inflector"
     #
     #   inflector = Dry::Inflector.new
-    #   inflector.camelize("dry/inflector") # => "Dry::Inflector"
-    def camelize(input)
-      input = input.to_s.dup
-      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match) }
-      input.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
-        m1 = Regexp.last_match(1)
-        m2 = Regexp.last_match(2)
-        "#{m1}#{inflections.acronyms.apply_to(m2)}"
-      end
-      input.gsub!("/", "::")
-      input
+    #   inflector.camelize_lower("data_mapper") # => "dataMapper"
+    def camelize_lower(input)
+      internal_camelize(input, false)
     end
+
+    # Upper camelize a string
+    #
+    # @param input [String,Symbol] the input
+    # @return [String] the upper camelized string
+    #
+    # @since 0.1.2
+    #
+    # @example
+    #   require "dry/inflector"
+    #
+    #   inflector = Dry::Inflector.new
+    #   inflector.camelize_upper("data_mapper") # => "DataMapper"
+    #   inflector.camelize_upper("dry/inflector") # => "Dry::Inflector"
+    def camelize_upper(input)
+      internal_camelize(input, true)
+    end
+
+    alias :camelize :camelize_upper
+
 
     # Find a constant with the name specified in the argument string
     #
@@ -298,8 +310,21 @@ module Dry
     # @api private
     DEFAULT_SEPARATOR = " "
 
-    # @since 0.1.0
-    # @api private
     attr_reader :inflections
+
+    # @since 0.1.2
+    # @api private
+    def internal_camelize(input, upper)
+      input = input.to_s.dup
+      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, upper) }
+      input.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
+        m1 = Regexp.last_match(1)
+        m2 = Regexp.last_match(2)
+        "#{m1}#{inflections.acronyms.apply_to(m2)}"
+      end
+      input.gsub!("/", "::")
+      input
+    end
+
   end
 end
