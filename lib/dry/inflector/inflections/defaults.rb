@@ -18,6 +18,7 @@ module Dry
           singular(inflect)
           irregular(inflect)
           uncountable(inflect)
+          acronyms(inflect)
         end
 
         # @since 0.1.0
@@ -101,7 +102,13 @@ module Dry
           inflect.uncountable(%w[hovercraft moose deer milk rain Swiss grass equipment information rice money species series fish sheep jeans])
         end
 
-        private_class_method :plural, :singular, :irregular, :uncountable
+        # @since 0.1.2
+        # @api private
+        def self.acronyms(inflect)
+          inflect.acronym(*%w[JSON HTTP OpenSSL HMAC])
+        end
+
+        private_class_method :plural, :singular, :irregular, :uncountable, :acronyms
       end
       # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/AbcSize

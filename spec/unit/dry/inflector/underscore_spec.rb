@@ -37,5 +37,12 @@ RSpec.describe Dry::Inflector do
     it "accepts symbols" do
       expect(subject.underscore(:DataMapper)).to eq("data_mapper")
     end
+
+    it "handles acronyms" do
+      expect(subject.underscore(i("JSON"))).to eql("json")
+      expect(subject.underscore(i("HTTPError"))).to eql("http_error")
+      expect(subject.underscore(i("OpenSSL::HMAC"))).to eql("openssl/hmac")
+      expect(subject.underscore(i("OpenSSL::Digest"))).to eql("openssl/digest")
+    end
   end
 end

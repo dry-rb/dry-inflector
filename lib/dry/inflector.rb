@@ -47,7 +47,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.camelize_lower("data_mapper") # => "dataMapper"
     def camelize_lower(input)
-      internal_camelize(input, /(?:_)(.)/)
+      internal_camelize(input, false)
     end
 
     # Upper camelize a string
@@ -62,8 +62,9 @@ module Dry
     #
     #   inflector = Dry::Inflector.new
     #   inflector.camelize_upper("data_mapper") # => "DataMapper"
+    #   inflector.camelize_upper("dry/inflector") # => "Dry::Inflector"
     def camelize_upper(input)
-      internal_camelize(input, /(?:\A|_)(.)/)
+      internal_camelize(input, true)
     end
 
     alias :camelize :camelize_upper
@@ -153,10 +154,13 @@ module Dry
     def humanize(input)
       input = input.to_s
       result = inflections.humans.apply_to(input)
-      result.gsub!(/_id\z/, "")
+      result.chomp!("_id")
       result.tr!("_", " ")
-      result.capitalize!
-      result
+      match = /(?<separator>\W)/.match(result)
+      separator = match ? match[:separator] : DEFAULT_SEPARATOR
+      result.split(separator).map.with_index { |word, index|
+        inflections.acronyms.apply_to(word, index.zero?)
+      }.join(separator)
     end
 
     # Creates a foreign key name
@@ -170,7 +174,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.foreign_key("Message") => "message_id"
     def foreign_key(input)
-      "#{underscorize(demodulize(input))}_id"
+      "#{underscore(demodulize(input))}_id"
     end
 
     # Ordinalize a number
@@ -256,7 +260,7 @@ module Dry
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
       input = input.to_s.gsub(/::/, "_")
-      pluralize(underscorize(input))
+      pluralize(underscore(input))
     end
 
     # Underscore a string
@@ -272,8 +276,17 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
-      input = input.to_s.gsub(/::/, "/")
-      underscorize(input)
+      input = input.to_s.gsub("::", "/")
+      input.gsub!(inflections.acronyms.regex) do
+        m1 = Regexp.last_match(1)
+        m2 = Regexp.last_match(2)
+        "#{m1 ? '_' : '' }#{m2.downcase}"
+      end
+      input.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      input.tr!("-", "_")
+      input.downcase!
+      input
     end
 
     # Check if the input is an uncountable word
@@ -293,26 +306,25 @@ module Dry
     # @api private
     ORDINALIZE_TH = (11..13).each_with_object({}) { |n, ret| ret[n] = true }.freeze
 
-    # @since 0.1.0
+    # @since 0.1.2
     # @api private
-    attr_reader :inflections
+    DEFAULT_SEPARATOR = " "
 
-    # @since 0.1.0
-    # @api private
-    def underscorize(input)
-      input.gsub!(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
-      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      input.tr!("-", "_")
-      input.downcase!
-      input
-    end
+    attr_reader :inflections
 
     # @since 0.1.2
     # @api private
-    def internal_camelize(input, second_regex)
-      input.to_s.
-        gsub(/\/(.?)/) { "::#{Regexp.last_match(1).upcase}" }.
-        gsub(second_regex) { Regexp.last_match(1).upcase }
+    def internal_camelize(input, upper)
+      input = input.to_s.dup
+      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, upper) }
+      input.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
+        m1 = Regexp.last_match(1)
+        m2 = Regexp.last_match(2)
+        "#{m1}#{inflections.acronyms.apply_to(m2)}"
+      end
+      input.gsub!("/", "::")
+      input
     end
+
   end
 end
