@@ -39,7 +39,7 @@ module Dry
     # @param input [String,Symbol] the input
     # @return [String] the lower camelized string
     #
-    # @since 0.1.2
+    # @since 0.1.3
     #
     # @example
     #   require "dry/inflector"
@@ -55,7 +55,7 @@ module Dry
     # @param input [String,Symbol] the input
     # @return [String] the upper camelized string
     #
-    # @since 0.1.2
+    # @since 0.1.3
     #
     # @example
     #   require "dry/inflector"
@@ -312,7 +312,7 @@ module Dry
 
     attr_reader :inflections
 
-    # @since 0.1.2
+    # @since 0.1.3
     # @api private
     def internal_camelize(input, upper)
       input = input.to_s.dup

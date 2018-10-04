@@ -2,6 +2,19 @@
 
 Inflector for Ruby
 
+## v0.1.3 - 2018-08-14
+
+### Added
+
+- [Abinoam P. Marques Jr. & Andrii Savchenko] Introduced `Dry::Inflector#upper_camelize` and `Dry::Inflector#lower_camelize`. `Dry::Inflector#camelize` is now an alias for `Dry::Inflector#upper_camelize` and may be deprecated later.
+
+	```ruby
+		inflector.camelize_upper("data_mapper") # => "DataMapper"
+		inflector.camelize_lower("data_mapper") # => "dataMapper"
+	```
+
+[Compare v0.1.2...v0.1.3](https://github.com/dry-rb/dry-inflector/compare/v0.1.2...v0.1.3)
+
 ## v0.1.2 - 2018-04-25
 
 ### Added
