@@ -1,11 +1,10 @@
-[gitter]: https://gitter.im/dry-rb/chat
 [gem]: https://img.shields.io/gem/v/dry-inflector.svg
 [travis]: https://travis-ci.org/dry-rb/dry-inflector
 [codeclimate]: https://codeclimate.com/github/dry-rb/dry-inflector
-[coveralls]: https://coveralls.io/r/dry-rb/dry-inflector
+[chat]: https://dry-rb.zulipchat.com
 [inchpages]: http://inch-ci.org/github/dry-rb/dry-inflector
 
-# dry-inflector [![Join the chat at https://gitter.im/dry-rb/chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dry-rb/chat)
+# dry-inflector [![Join the chat at https://dry-rb.zulipchat.com](https://img.shields.io/badge/dry--rb-join%20chat-%23346b7a.svg)][chat]
 
 [![Gem Version](https://badge.fury.io/rb/dry-inflector.svg)][gem]
 [![Build Status](https://travis-ci.org/dry-rb/dry-inflector.svg?branch=master)][travis]
