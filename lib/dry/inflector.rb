@@ -300,6 +300,15 @@ module Dry
       !(input =~ /\A[[:space:]]*\z/).nil? || inflections.uncountables.include?(input.downcase)
     end
 
+    # @return [String]
+    #
+    # @since 0.2.0
+    # @api public
+    def to_s
+      '#<Dry::Inflector>'
+    end
+    alias inspect to_s
+
     private
 
     # @since 0.1.0
