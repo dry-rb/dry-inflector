@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -- lib/* CHANGELOG.md LICENSE.md README.md dry-inflector.gemspec`.split($INPUT_RECORD_SEPARATOR)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.required_ruby_version = '>= 2.4'
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake",    "~> 12.0"
