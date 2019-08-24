@@ -12,4 +12,6 @@ require "dry/inflector"
 # Pry.start
 
 require "irb"
-IRB.start(__FILE__)
+Dry::Inflector.new.instance_exec do
+  binding.irb
+end
