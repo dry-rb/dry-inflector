@@ -55,6 +55,16 @@ module Fixtures
       "grass" => "grass",
       # ==== bugs, typos and reported issues
 
+      "alias" => "alias",
+      "status" => "status",
+      "bus" => "bus",
+      "axis" => "axis",
+      "crisis" => "crisis",
+      "testis" => "testis",
+      "thesis" => "thesis",
+      "analysis" => "analysis",
+      "octopus" => "octopus",
+
       # ==== rules
 
       "forums" => "forum",
