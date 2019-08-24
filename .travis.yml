@@ -7,12 +7,12 @@ before_install:
   - gem install bundler
   - gem update --system
 after_success:
-  - '[ -d coverage ] && bundle exec codeclimate-test-reporter'
+  - "[ -d coverage ] && bundle exec codeclimate-test-reporter"
 rvm:
   - 2.4.6
   - 2.5.5
   - 2.6.3
-  - jruby-9.2.7.0
+  - jruby-9.2.8.0
   - truffleruby
 matrix:
   allow_failures:
