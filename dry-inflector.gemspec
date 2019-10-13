@@ -13,10 +13,13 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "DRY Inflector"
   spec.description   = "String inflections for dry-rb"
-  spec.homepage      = "http://dry-rb.org"
+  spec.homepage      = "https://dry-rb.org"
   spec.license       = "MIT"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
+  spec.metadata["changelog_uri"] = "https://github.com/dry-rb/dry-inflector/blob/master/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/dry-rb/dry-inflector"
+  spec.metadata["bug_tracker_uri"] = "https://github.com/dry-rb/dry-inflector/issues"
 
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
