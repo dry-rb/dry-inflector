@@ -6,7 +6,7 @@ Inflector for Ruby
 
 ### Added
 
-- [Abinoam P. Marques Jr. & Andrii Savchenko] Introduced `Dry::Inflector#camelize_lower` and `Dry::Inflector#camelize_lower`. `Dry::Inflector#camelize` is now an alias for `Dry::Inflector#camelize_upper`.
+- [Abinoam P. Marques Jr. & Andrii Savchenko] Introduced `Dry::Inflector#camelize_upper` and `Dry::Inflector#camelize_lower`. `Dry::Inflector#camelize` is now an alias for `Dry::Inflector#camelize_upper`.
 	```ruby
 	inflector.camelize_upper("data_mapper") # => "DataMapper"
 	inflector.camelize_lower("data_mapper") # => "dataMapper"
