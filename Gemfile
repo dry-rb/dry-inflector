@@ -6,6 +6,7 @@ gemspec
 group :tools do
   gem "byebug"
   gem "yard"
+  gem 'ossy', git: 'https://github.com/solnic/ossy.git', branch: 'master'
 end
 
 gem "simplecov"
