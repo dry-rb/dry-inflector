@@ -1,4 +1,4 @@
-[gem]: https://img.shields.io/gem/v/dry-inflector.svg
+[gem]: https://rubygems.org/gems/dry-inflector
 [travis]: https://travis-ci.org/dry-rb/dry-inflector
 [codeclimate]: https://codeclimate.com/github/dry-rb/dry-inflector
 [chat]: https://dry-rb.zulipchat.com
