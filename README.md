@@ -1,5 +1,5 @@
 [gem]: https://rubygems.org/gems/dry-inflector
-[travis]: https://travis-ci.org/dry-rb/dry-inflector
+[ci]: https://github.com/dry-rb/dry-inflector/actions?query=workflow%3Aci
 [codeclimate]: https://codeclimate.com/github/dry-rb/dry-inflector
 [chat]: https://dry-rb.zulipchat.com
 [inchpages]: http://inch-ci.org/github/dry-rb/dry-inflector
@@ -7,7 +7,7 @@
 # dry-inflector [![Join the chat at https://dry-rb.zulipchat.com](https://img.shields.io/badge/dry--rb-join%20chat-%23346b7a.svg)][chat]
 
 [![Gem Version](https://badge.fury.io/rb/dry-inflector.svg)][gem]
-[![Build Status](https://travis-ci.org/dry-rb/dry-inflector.svg?branch=master)][travis]
+[![Build Status](https://github.com/dry-rb/dry-inflector/workflows/ci/badge.svg)][ci]
 [![Code Climate](https://codeclimate.com/github/dry-rb/dry-inflector/badges/gpa.svg)][codeclimate]
 [![Test Coverage](https://codeclimate.com/github/dry-rb/dry-inflector/badges/coverage.svg)][codeclimate]
 [![Inline docs](http://inch-ci.org/github/dry-rb/dry-inflector.svg?branch=master)][inchpages]
