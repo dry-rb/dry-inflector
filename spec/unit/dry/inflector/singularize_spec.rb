@@ -16,5 +16,27 @@ RSpec.describe Dry::Inflector do
       expect(subject.singularize(:users)).to eq("user")
       expect(subject.singularize(:money)).to eq("money")
     end
+
+    context "with custom inflection rules" do
+      subject do
+        described_class.new do |inflections|
+          inflections.singular    "viruses", "virus"
+          inflections.irregular   "plus",    "plusses"
+          inflections.uncountable "dry-inflector"
+        end
+      end
+
+      it "pluralizes using '#singular' rule" do
+        expect(subject.singularize("viruses")).to eq("virus")
+      end
+
+      it "pluralizes using '#irregular' rule" do
+        expect(subject.singularize("plusses")).to eq("plus")
+      end
+
+      it "doesn't singularize uncountable" do
+        expect(subject.singularize("dry-inflector")).to eq("dry-inflector")
+      end
+    end
   end
 end
