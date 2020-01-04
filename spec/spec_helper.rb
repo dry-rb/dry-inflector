@@ -1,14 +1,10 @@
 # frozen_string_literal: true
+
+require_relative 'support/coverage'
+
 require 'pathname'
 
 SPEC_ROOT = Pathname(__FILE__).dirname
-
-if ENV['COVERAGE'] == 'true'
-  require 'simplecov'
-  SimpleCov.start do
-    add_filter '/spec/'
-  end
-end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
