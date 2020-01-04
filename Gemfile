@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
+
+eval_gemfile 'Gemfile.devtools'
+
 gemspec
 
 group :tools do
   gem "byebug"
   gem "yard"
-  gem 'ossy', git: 'https://github.com/solnic/ossy.git', branch: 'master'
 end
-
-gem "simplecov"
-gem "codeclimate-test-reporter"
