@@ -24,8 +24,8 @@ module Dry
         # @since 0.1.0
         # @api private
         def self.plural(inflect)
-          inflect.plural(/\z/, "s")
-          inflect.plural(/s\z/i, "s")
+          inflect.plural(/\z/, 's')
+          inflect.plural(/s\z/i, 's')
           inflect.plural(/(ax|test)is\z/i, '\1es')
           inflect.plural(/(.*)us\z/i, '\1uses')
           inflect.plural(/(octop|vir|cact)us\z/i, '\1i')
@@ -34,7 +34,7 @@ module Dry
           inflect.plural(/(buffal|domin|ech|embarg|her|mosquit|potat|tomat)o\z/i, '\1oes')
           inflect.plural(/(?<!b)um\z/i, '\1a')
           inflect.plural(/([ti])a\z/i, '\1a')
-          inflect.plural(/sis\z/i, "ses")
+          inflect.plural(/sis\z/i, 'ses')
           inflect.plural(/(.*)(?:([^f]))f[e]*\z/i, '\1\2ves')
           inflect.plural(/(hive|proof)\z/i, '\1s') # TODO: proof can be moved in the above regexp
           inflect.plural(/([^aeiouy]|qu)y\z/i, '\1ies')
@@ -54,7 +54,7 @@ module Dry
         # @since 0.1.0
         # @api private
         def self.singular(inflect)
-          inflect.singular(/s\z/i, "")
+          inflect.singular(/s\z/i, '')
           inflect.singular(/(n)ews\z/i, '\1ews')
           inflect.singular(/([ti])a\z/i, '\1um')
           inflect.singular(/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)(sis|ses)\z/i, '\1\2sis')
@@ -85,15 +85,15 @@ module Dry
         # @since 0.1.0
         # @api private
         def self.irregular(inflect)
-          inflect.irregular("person", "people")
-          inflect.irregular("man", "men")
-          inflect.irregular("human", "humans") # NOTE: this is here only to override the previous rule
-          inflect.irregular("child", "children")
-          inflect.irregular("sex", "sexes")
-          inflect.irregular("foot", "feet")
-          inflect.irregular("tooth", "teeth")
-          inflect.irregular("goose", "geese")
-          inflect.irregular("forum", "forums") # FIXME: this is here because I need to fix the "um" regexp
+          inflect.irregular('person', 'people')
+          inflect.irregular('man', 'men')
+          inflect.irregular('human', 'humans') # NOTE: this is here only to override the previous rule
+          inflect.irregular('child', 'children')
+          inflect.irregular('sex', 'sexes')
+          inflect.irregular('foot', 'feet')
+          inflect.irregular('tooth', 'teeth')
+          inflect.irregular('goose', 'geese')
+          inflect.irregular('forum', 'forums') # FIXME: this is here because I need to fix the "um" regexp
         end
 
         # @since 0.1.0

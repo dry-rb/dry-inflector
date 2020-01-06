@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "set"
-require "dry/inflector/rules"
-require "dry/inflector/acronyms"
+require 'set'
+require 'dry/inflector/rules'
+require 'dry/inflector/acronyms'
 
 module Dry
   class Inflector
@@ -10,7 +10,7 @@ module Dry
     #
     # @since 0.1.0
     class Inflections
-      require "dry/inflector/inflections/defaults"
+      require 'dry/inflector/inflections/defaults'
 
       # Instantiate a set of inflection rules.
       # It adds the default rules and the optional customizations, passed as a block.

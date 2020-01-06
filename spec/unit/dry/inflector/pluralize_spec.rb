@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Dry::Inflector do
-  describe "#pluralize" do
+  describe '#pluralize' do
     Fixtures::Pluralize.cases.each do |singular, plural|
       it "pluralizes #{singular} => #{plural}" do
         expect(subject.pluralize(i(singular))).to eq(plural)
@@ -18,30 +18,30 @@ RSpec.describe Dry::Inflector do
       pending "missing exception or rule for #{singular} => #{plural}"
     end
 
-    it "accepts symbols" do
-      expect(subject.pluralize(:user)).to eq("users")
-      expect(subject.pluralize(:money)).to eq("money")
+    it 'accepts symbols' do
+      expect(subject.pluralize(:user)).to eq('users')
+      expect(subject.pluralize(:money)).to eq('money')
     end
 
-    context "with custom inflection rules" do
+    context 'with custom inflection rules' do
       subject do
         described_class.new do |inflections|
-          inflections.plural      "virus",   "viruses"
-          inflections.irregular   "plus",    "plusses"
-          inflections.uncountable "dry-inflector"
+          inflections.plural      'virus',   'viruses'
+          inflections.irregular   'plus',    'plusses'
+          inflections.uncountable 'dry-inflector'
         end
       end
 
       it "pluralizes using '#plural' rule" do
-        expect(subject.pluralize("virus")).to eq("viruses")
+        expect(subject.pluralize('virus')).to eq('viruses')
       end
 
       it "pluralizes using '#irregular' rule" do
-        expect(subject.pluralize("plus")).to eq("plusses")
+        expect(subject.pluralize('plus')).to eq('plusses')
       end
 
       it "doesn't pluralize uncountable" do
-        expect(subject.pluralize("dry-inflector")).to eq("dry-inflector")
+        expect(subject.pluralize('dry-inflector')).to eq('dry-inflector')
       end
     end
   end

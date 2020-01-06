@@ -5,8 +5,8 @@ module Dry
   #
   # @since 0.1.0
   class Inflector
-    require "dry/inflector/version"
-    require "dry/inflector/inflections"
+    require 'dry/inflector/version'
+    require 'dry/inflector/inflections'
 
     # Instantiate the inflector
     #
@@ -102,7 +102,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.classify("books") # => "Book"
     def classify(input)
-      camelize(singularize(input.to_s.sub(/.*\./, "")))
+      camelize(singularize(input.to_s.sub(/.*\./, '')))
     end
 
     # Dasherize a string
@@ -118,7 +118,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.dasherize("dry_inflector") # => "dry-inflector"
     def dasherize(input)
-      input.to_s.tr("_", "-")
+      input.to_s.tr('_', '-')
     end
 
     # Demodulize a string
@@ -134,7 +134,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.demodulize("Dry::Inflector") # => "Inflector"
     def demodulize(input)
-      input.to_s.split("::").last
+      input.to_s.split('::').last
     end
 
     # Humanize a string
@@ -153,8 +153,8 @@ module Dry
     def humanize(input)
       input = input.to_s
       result = inflections.humans.apply_to(input)
-      result.chomp!("_id")
-      result.tr!("_", " ")
+      result.chomp!('_id')
+      result.tr!('_', ' ')
       match = /(?<separator>\W)/.match(result)
       separator = match ? match[:separator] : DEFAULT_SEPARATOR
       result.split(separator).map.with_index { |word, index|
@@ -260,7 +260,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
-      input = input.to_s.gsub(/::/, "_")
+      input = input.to_s.gsub(/::/, '_')
       pluralize(underscore(input))
     end
 
@@ -277,7 +277,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.underscore("dry-inflector") # => "dry_inflector"
     def underscore(input)
-      input = input.to_s.gsub("::", "/")
+      input = input.to_s.gsub('::', '/')
       input.gsub!(inflections.acronyms.regex) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
@@ -285,7 +285,7 @@ module Dry
       end
       input.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
       input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
-      input.tr!("-", "_")
+      input.tr!('-', '_')
       input.downcase!
       input
     end
@@ -318,7 +318,7 @@ module Dry
 
     # @since 0.1.2
     # @api private
-    DEFAULT_SEPARATOR = " "
+    DEFAULT_SEPARATOR = ' '
 
     attr_reader :inflections
 
@@ -332,7 +332,7 @@ module Dry
         m2 = Regexp.last_match(2)
         "#{m1}#{inflections.acronyms.apply_to(m2)}"
       end
-      input.gsub!("/", "::")
+      input.gsub!('/', '::')
       input
     end
   end

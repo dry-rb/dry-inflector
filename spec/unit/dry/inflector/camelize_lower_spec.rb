@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Dry::Inflector do
-  describe "#camelize_lower" do
+  describe '#camelize_lower' do
     Fixtures::CamelizeLower.cases.each do |input, camelized|
       it "lower camelizes #{input} => #{camelized}" do
         expect(subject.camelize_lower(i(input))).to eq(camelized)
@@ -12,31 +12,31 @@ RSpec.describe Dry::Inflector do
       pending "missing exception or rule for #{input} => #{camelized}"
     end
 
-    it "accepts symbols" do
-      expect(subject.camelize_lower(:data_mapper)).to eq("dataMapper")
+    it 'accepts symbols' do
+      expect(subject.camelize_lower(:data_mapper)).to eq('dataMapper')
     end
 
-    it "handles acronyms" do
-      expect(subject.camelize_lower(i("json"))).to eql("JSON")
-      expect(subject.camelize_lower(i("http_error"))).to eql("HTTPError")
-      expect(subject.camelize_lower(i("openssl/hmac"))).to eql("OpenSSL::HMAC")
-      expect(subject.camelize_lower(i("openssl/digest"))).to eql("OpenSSL::Digest")
+    it 'handles acronyms' do
+      expect(subject.camelize_lower(i('json'))).to eql('JSON')
+      expect(subject.camelize_lower(i('http_error'))).to eql('HTTPError')
+      expect(subject.camelize_lower(i('openssl/hmac'))).to eql('OpenSSL::HMAC')
+      expect(subject.camelize_lower(i('openssl/digest'))).to eql('OpenSSL::Digest')
     end
 
-    context "custom acronyms" do
+    context 'custom acronyms' do
       subject do
         Dry::Inflector.new do |inflect|
-          inflect.acronym("IP", "HTML", "XML", "BSD")
+          inflect.acronym('IP', 'HTML', 'XML', 'BSD')
         end
       end
 
-      it "handles acronyms" do
-        expect(subject.camelize_lower(i("ip"))).to eql("IP")
-        expect(subject.camelize_lower(i("ip_sec"))).to eql("IPSec")
-        expect(subject.camelize_lower(i("html_tidy"))).to eql("HTMLTidy")
-        expect(subject.camelize_lower(i("html_tidy_generator"))).to eql("HTMLTidyGenerator")
-        expect(subject.camelize_lower(i("force_xml_controller"))).to eql("forceXMLController")
-        expect(subject.camelize_lower(i("free_bsd"))).to eql("freeBSD")
+      it 'handles acronyms' do
+        expect(subject.camelize_lower(i('ip'))).to eql('IP')
+        expect(subject.camelize_lower(i('ip_sec'))).to eql('IPSec')
+        expect(subject.camelize_lower(i('html_tidy'))).to eql('HTMLTidy')
+        expect(subject.camelize_lower(i('html_tidy_generator'))).to eql('HTMLTidyGenerator')
+        expect(subject.camelize_lower(i('force_xml_controller'))).to eql('forceXMLController')
+        expect(subject.camelize_lower(i('free_bsd'))).to eql('freeBSD')
       end
     end
   end

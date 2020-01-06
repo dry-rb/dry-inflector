@@ -11,12 +11,12 @@ module Fixtures
     end
 
     CASES = {
-      "merb" => "merb",
-      "data_mapper" => "dataMapper",
-      "dry/inflector" => "dry::Inflector",
-      "dry/inflector/inflections" => "dry::Inflector::Inflections",
-      "blog_post/author" => "blogPost::Author",
-      "blog_post/tag_cloud" => "blogPost::TagCloud"
+      'merb' => 'merb',
+      'data_mapper' => 'dataMapper',
+      'dry/inflector' => 'dry::Inflector',
+      'dry/inflector/inflections' => 'dry::Inflector::Inflections',
+      'blog_post/author' => 'blogPost::Author',
+      'blog_post/tag_cloud' => 'blogPost::TagCloud'
     }.freeze
 
     # Missing rules
