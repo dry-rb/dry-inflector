@@ -20,6 +20,6 @@ module Fixtures
     }.freeze
 
     # Missing rules
-    PENDING = { }.freeze
+    PENDING = {}.freeze
   end
 end

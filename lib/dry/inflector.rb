@@ -69,7 +69,6 @@ module Dry
 
     alias :camelize :camelize_upper
 
-
     # Find a constant with the name specified in the argument string
     #
     # The name is assumed to be the one of a top-level constant,
@@ -224,6 +223,7 @@ module Dry
     def pluralize(input)
       input = input.to_s
       return input if uncountable?(input)
+
       inflections.plurals.apply_to(input)
     end
 
@@ -243,6 +243,7 @@ module Dry
     def singularize(input)
       input = input.to_s
       return input if uncountable?(input)
+
       inflections.singulars.apply_to(input)
     end
 
@@ -280,7 +281,7 @@ module Dry
       input.gsub!(inflections.acronyms.regex) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
-        "#{m1 ? '_' : '' }#{m2.downcase}"
+        "#{m1 ? '_' : ''}#{m2.downcase}"
       end
       input.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
       input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
@@ -334,6 +335,5 @@ module Dry
       input.gsub!("/", "::")
       input
     end
-
   end
 end

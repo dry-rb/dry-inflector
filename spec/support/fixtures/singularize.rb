@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 module Fixtures
@@ -166,15 +165,15 @@ module Fixtures
 
     # Missing exceptions or missing rules?
     PENDING = {
-      "cacti"     => "cactus",
-      "cactuses"  => "cactus",
-      "thesauri"  => "thesaurus",
+      "cacti" => "cactus",
+      "cactuses" => "cactus",
+      "thesauri" => "thesaurus",
       "phenomena" => "phenomenon",
-      "drives"    => "drive",
-      "pluses"    => "plus",
-      "thieves"   => "thief",
-      "criteria"  => "criterion",
-      "postgres"  => "postgres"
+      "drives" => "drive",
+      "pluses" => "plus",
+      "thieves" => "thief",
+      "criteria" => "criterion",
+      "postgres" => "postgres"
     }.freeze
   end
 end
