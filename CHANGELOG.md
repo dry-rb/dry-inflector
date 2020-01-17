@@ -1,7 +1,3 @@
-# dry-inflector
-
-Inflector for Ruby
-
 ## v0.2.0 - 2019-10-13
 
 ### Added
