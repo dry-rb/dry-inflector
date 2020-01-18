@@ -13,6 +13,7 @@
 
 - [ecnal] Fixed singularization rules for words like "alias" or "status"
 
+
 [Compare v0.1.2...v0.2.0](https://github.com/dry-rb/dry-inflector/compare/v0.1.2...v0.2.0)
 
 ## 0.1.2 2018-04-25
@@ -22,6 +23,7 @@
 
 - [Gustavo Caso & Nikita Shilnikov] Added support for acronyms
 
+
 [Compare v0.1.1...v0.1.2](https://github.com/dry-rb/dry-inflector/compare/v0.1.1...v0.1.2)
 
 ## 0.1.1 2017-11-18
@@ -30,6 +32,7 @@
 ### Fixed
 
 - [Luca Guidi & Abinoam P. Marques Jr.] Ensure `Dry::Inflector#ordinalize` to work for all the numbers from 0 to 100
+
 
 [Compare v0.1.0...v0.1.1](https://github.com/dry-rb/dry-inflector/compare/v0.1.0...v0.1.1)
 
