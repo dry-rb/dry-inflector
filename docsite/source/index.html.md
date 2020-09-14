@@ -64,9 +64,9 @@ inflector.pluralize("dry-inflector") # => "dry-inflector"
 require "dry/inflector"
 
 inflector = Dry::Inflector.new do |inflections|
-  inflections.acronym "HTTP", "XML"
+  inflections.acronym "API", "OpenGL"
 end
 
-inflector.underscore("XMLHTTPRequest") # => "xml_http_request"
-inflector.camelize("xml_http_request") # => "XMLHTTPRequest"
+inflector.camelize("opengl_api") # => "OpenGLAPI"
+inflector.underscore("OpenGLAPI") # => "opengl_api"
 ```
