@@ -1,3 +1,36 @@
+## 0.2.1 (unreleased)
+
+
+### Fixed
+
+- [Luca Guidi] Fixed `Dry::Inflector#constantize` to not inherit constants from siblings namespaces
+- ```ruby
+- module Foo
+-   module Bar
+-     VERSION = "0.1.0"
+-   end
+-
+-   module Baz
+-   end
+- end
+-
+- module Test
+- end
+-
+- module Check
+- end
+-
+- inflector = Dry::Inflector.new
+-
+- # BEFORE
+- inflector.constantize("Foo::Baz::VERSION") # => VERSION
+- inflector.constantize("Test::Check") # => Check
+-
+- # AFTER
+- inflector.constantize("Foo::Baz::VERSION") # => raises NameError
+- inflector.constantize("Test::Check") # => raises NameError
+- ```
+
 ## 0.2.0 2019-10-13
 
 

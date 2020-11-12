@@ -86,7 +86,7 @@ module Dry
     #   inflector.constantize("Module")         # => Module
     #   inflector.constantize("Dry::Inflector") # => Dry::Inflector
     def constantize(input)
-      Object.const_get(input)
+      Object.const_get(input, false)
     end
 
     # Classify a string
