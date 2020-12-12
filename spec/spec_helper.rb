@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'bundler/setup'
+require "bundler/setup"
 
-require_relative 'support/coverage'
+require_relative "support/coverage"
 
-require 'pathname'
+require "pathname"
 
 SPEC_ROOT = Pathname(__FILE__).dirname
 
@@ -24,16 +24,16 @@ RSpec.configure do |config|
 
   config.warnings = true
 
-  config.default_formatter = 'doc' if config.files_to_run.one?
+  config.default_formatter = "doc" if config.files_to_run.one?
   config.profile_examples = 10
 
   config.order = :random
   Kernel.srand config.seed
 end
 
-require 'dry/inflector'
+require "dry/inflector"
 
-require 'pathname'
-Dir.glob(Pathname.new(__dir__).join('support', '**', '*.rb')).each do |file|
+require "pathname"
+Dir.glob(Pathname.new(__dir__).join("support", "**", "*.rb")).each do |file|
   require_relative file
 end
