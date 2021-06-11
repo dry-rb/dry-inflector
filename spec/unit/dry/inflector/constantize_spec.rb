@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 RSpec.describe Dry::Inflector do
-  describe '#constantize' do
-    it 'constantizes Module' do
-      expect(subject.constantize(i('Module'))).to eq Module
+  describe "#constantize" do
+    it "constantizes Module" do
+      expect(subject.constantize(i("Module"))).to eq Module
     end
 
-    it 'constantizes ::Module' do
-      expect(subject.constantize(i('::Module'))).to eq Module
+    it "constantizes ::Module" do
+      expect(subject.constantize(i("::Module"))).to eq Module
     end
 
-    it 'accepts symbols' do
+    it "accepts symbols" do
       expect(subject.constantize(i(:Module))).to eq Module
     end
 
-    it 'constantizes nested constant Dry::Inflector::Inflections' do
-      expect(subject.constantize(i('Dry::Inflector::Inflections'))).to eq Dry::Inflector::Inflections
+    it "constantizes nested constant Dry::Inflector::Inflections" do
+      expect(subject.constantize(i("Dry::Inflector::Inflections"))).to eq Dry::Inflector::Inflections
     end
 
-    it 'does not search ancestors' do
+    it "does not search ancestors" do
       module Foo
         class Bar
           VAL = 10
@@ -27,38 +27,38 @@ RSpec.describe Dry::Inflector do
         class Baz < Bar; end
       end
 
-      expect(subject.constantize(i('Foo::Bar::VAL'))).to be(10)
-      expect { subject.constantize(i('Foo::Baz::VAL')) }.to raise_error(NameError)
+      expect(subject.constantize(i("Foo::Bar::VAL"))).to be(10)
+      expect { subject.constantize(i("Foo::Baz::VAL")) }.to raise_error(NameError)
     end
 
-    it 'searches in const_missing' do
+    it "searches in const_missing" do
       module Foo
         class Bar
           def self.const_missing(name)
-            name.to_s == 'Const' ? Baz : super
+            name.to_s == "Const" ? Baz : super
           end
         end
 
         class Baz < Bar; end
 
         def self.const_missing(name)
-          name.to_s == 'Autoloaded' ? Bar : super
+          name.to_s == "Autoloaded" ? Bar : super
         end
       end
 
-      expect(subject.constantize(i('Foo::Autoloaded::Const'))).to eq Foo::Baz
-      expect(subject.constantize(i('Foo::Bar::Const'))).to eq Foo::Baz
+      expect(subject.constantize(i("Foo::Autoloaded::Const"))).to eq Foo::Baz
+      expect(subject.constantize(i("Foo::Bar::Const"))).to eq Foo::Baz
     end
 
-    it 'raises exception when empty string given' do
+    it "raises exception when empty string given" do
       expect do
-        subject.constantize(i(''))
+        subject.constantize(i(""))
       end.to raise_error(NameError)
     end
 
-    it 'raises exception when constant not found' do
+    it "raises exception when constant not found" do
       expect do
-        subject.constantize(i('Qwerty'))
+        subject.constantize(i("Qwerty"))
       end.to raise_error(NameError)
     end
   end
