@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'set'
-require 'dry/inflector/rules'
-require 'dry/inflector/acronyms'
+require "set"
+require "dry/inflector/rules"
+require "dry/inflector/acronyms"
 
 module Dry
   class Inflector
@@ -10,7 +10,7 @@ module Dry
     #
     # @since 0.1.0
     class Inflections
-      require 'dry/inflector/inflections/defaults'
+      require "dry/inflector/inflections/defaults"
 
       # Instantiate a set of inflection rules.
       # It adds the default rules and the optional customizations, passed as a block.
@@ -87,7 +87,9 @@ module Dry
       #
       # Specifies a new pluralization rule and its replacement.
       # The rule can either be a string or a regular expression.
-      # The replacement should always be a string that may include references to the matched data from the rule.
+      #
+      # The replacement should always be a string that may include
+      # references to the matched data from the rule.
       #
       # @param rule [String, Regexp] the rule
       # @param replacement [String] the replacement
@@ -108,7 +110,9 @@ module Dry
       #
       # Specifies a new singularization rule and its replacement.
       # The rule can either be a string or a regular expression.
-      # The replacement should always be a string that may include references to the matched data from the rule.
+      #
+      # The replacement should always be a string that may include
+      # references to the matched data from the rule.
       #
       # @param rule [String, Regexp] the rule
       # @param replacement [String] the replacement
@@ -127,7 +131,9 @@ module Dry
 
       # Add a custom pluralization rule
       #
-      # Specifies a new irregular that applies to both pluralization and singularization at the same time.
+      # Specifies a new irregular that applies to both pluralization
+      # and singularization at the same time.
+      #
       # This can only be used for strings, not regular expressions.
       # You simply pass the irregular in singular and plural form.
       #
@@ -194,9 +200,14 @@ module Dry
 
       # Add a custom humanize rule
       #
-      # Specifies a humanized form of a string by a regular expression rule or by a string mapping.
-      # When using a regular expression based replacement, the normal humanize formatting is called after the replacement.
-      # When a string is used, the human form should be specified as desired (example: `"The name"`, not `"the_name"`)
+      # Specifies a humanized form of a string by a regular expression rule or
+      # by a string mapping.
+      #
+      # When using a regular expression based replacement, the normal humanize
+      # formatting is called after the replacement.
+      #
+      # When a string is used, the human form should be specified as desired
+      # (example: `"The name"`, not `"the_name"`)
       #
       # @param rule [String, Regexp] the rule
       # @param replacement [String] the replacement
@@ -227,7 +238,7 @@ module Dry
       # @api private
       def add_irregular(rule, replacement, target)
         head, *tail = rule.chars.to_a
-        rule(/(#{head})#{tail.join}\z/i, '\1' + replacement[1..-1], target)
+        rule(/(#{head})#{tail.join}\z/i, "\\1#{replacement[1..]}", target)
       end
 
       # Add a new rule

@@ -67,7 +67,7 @@ module Dry
       internal_camelize(input, true)
     end
 
-    alias :camelize :camelize_upper
+    alias_method :camelize, :camelize_upper
 
     # Find a constant with the name specified in the argument string
     #
@@ -158,7 +158,7 @@ module Dry
       match = /(?<separator>\W)/.match(result)
       separator = match ? match[:separator] : DEFAULT_SEPARATOR
       result.split(separator).map.with_index { |word, index|
-        inflections.acronyms.apply_to(word, index.zero?)
+        inflections.acronyms.apply_to(word, capitalize: index.zero?)
       }.join(separator)
     end
 
@@ -192,7 +192,7 @@ module Dry
     #   inflector.ordinalize(3)  # => "3rd"
     #   inflector.ordinalize(10) # => "10th"
     #   inflector.ordinalize(23) # => "23rd"
-    def ordinalize(number) # rubocop:disable Metrics/MethodLength
+    def ordinalize(number)
       abs_value = number.abs
 
       if ORDINALIZE_TH.key?(abs_value % 100)
@@ -281,7 +281,7 @@ module Dry
       input.gsub!(inflections.acronyms.regex) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
-        "#{m1 ? '_' : ''}#{m2.downcase}"
+        "#{m1 ? "_" : ""}#{m2.downcase}"
       end
       input.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
       input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
@@ -308,7 +308,7 @@ module Dry
     def to_s
       "#<Dry::Inflector>"
     end
-    alias inspect to_s
+    alias_method :inspect, :to_s
 
     private
 
@@ -326,7 +326,7 @@ module Dry
     # @api private
     def internal_camelize(input, upper)
       input = input.to_s.dup
-      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, upper) }
+      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, capitalize: upper) }
       input.gsub!(%r{(?:_|(/))([a-z\d]*)}i) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)

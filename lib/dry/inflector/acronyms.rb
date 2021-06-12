@@ -18,7 +18,7 @@ module Dry
 
       # @since 0.1.2
       # @api private
-      def apply_to(word, capitalize = true)
+      def apply_to(word, capitalize: true)
         @rules[word.downcase] || (capitalize ? word.capitalize : word)
       end
 
