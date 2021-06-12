@@ -80,11 +80,6 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Enabled: false
 
-Metrics/ModuleLength:
-  Enabled: true
-  Exclude:
-    - "spec/**/*.rb"
-
 Metrics/BlockLength:
   Enabled: false
 
@@ -174,4 +169,7 @@ Style/TrailingUnderscoreVariable:
   Enabled: false
 
 Style/MultipleComparison:
+  Enabled: false
+
+Style/Next:
   Enabled: false
