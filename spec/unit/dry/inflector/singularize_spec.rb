@@ -10,6 +10,10 @@ RSpec.describe Dry::Inflector do
 
     Fixtures::Singularize.pending.each do |plural, singular|
       pending "missing exception or rule for #{plural} => #{singular}"
+
+      it "fails as expected since it's 'pending' (tip: remove it from pending!)" do
+        expect(subject.singularize(plural)).to_not eq(singular)
+      end
     end
 
     it "accepts symbols" do

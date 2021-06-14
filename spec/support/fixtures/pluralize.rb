@@ -401,8 +401,7 @@ module Fixtures
       "criterion" => "criteria",
       "thesaurus" => "thesauri",
       "plus" => "plusses",
-      "virus" => "viruses",
-      "Swiss" => "Swiss"
+      "virus" => "viruses"
     }.freeze
   end
 end
