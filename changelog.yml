@@ -1,4 +1,11 @@
 ---
+- version: unreleased
+  summary: 
+  date: 
+  fixed:
+  - 'Fix singularizing -us suffix (issue #33 via #38) (@cllns)'
+  added: 
+  changed: 
 - version: 0.2.0
   date: '2019-10-13'
   added:
