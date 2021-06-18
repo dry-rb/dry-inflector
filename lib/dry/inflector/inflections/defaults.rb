@@ -69,7 +69,7 @@ module Dry
           inflect.singular(/(ss)\z/i, '\1')
           inflect.singular(/(x|ch|ss|sh)es\z/i, '\1')
           inflect.singular(/([m|l])ice\z/i, '\1ouse')
-          inflect.singular(/(bus)(es)?\z/i, '\1')
+          inflect.singular(/(us)(es)?\z/i, '\1')
           inflect.singular(/(o)es\z/i, '\1')
           inflect.singular(/(shoe)s\z/i, '\1')
           inflect.singular(/(cris|ax|test)(is|es)\z/i, '\1is')

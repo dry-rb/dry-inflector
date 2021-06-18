@@ -62,7 +62,12 @@ module Fixtures
       "testis" => "testis",
       "thesis" => "thesis",
       "analysis" => "analysis",
-      "octopus" => "octopus",
+      "octopuses" => "octopus",
+      "pluses" => "plus",
+      "cactuses" => "cactus",
+      "bonuses" => "bonus",
+      "geniuses" => "genius",
+      "walruses" => "walrus",
 
       # ==== rules
 
@@ -166,11 +171,9 @@ module Fixtures
     # Missing exceptions or missing rules?
     PENDING = {
       "cacti" => "cactus",
-      "cactuses" => "cactus",
       "thesauri" => "thesaurus",
       "phenomena" => "phenomenon",
       "drives" => "drive",
-      "pluses" => "plus",
       "thieves" => "thief",
       "criteria" => "criterion",
       "postgres" => "postgres"
