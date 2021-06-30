@@ -1,10 +1,11 @@
 ---
-- version: unreleased
+- version: 0.2.1
   summary: 
-  date: 
+  date: '2021-06-30'
   fixed:
   - 'Fix singularizing -us suffix (issue #33 via #38) (@cllns)'
   added: 
+  - 'Add default acronyms: API and CSRF (#35) (@jodosha)'
   changed: 
 - version: 0.2.0
   date: '2019-10-13'
