@@ -3,7 +3,7 @@
 RSpec.describe Dry::Inflector do
   subject do
     Dry::Inflector.new do |inflect|
-      inflect.acronym("API", "RESTful", "RoR", "PhD", "W3C", "SSL", "HTML")
+      inflect.acronym("RESTful", "RoR", "PhD", "W3C", "SSL", "HTML")
     end
   end
 
@@ -29,6 +29,7 @@ RSpec.describe Dry::Inflector do
           ["HTTP::RESTful",     "http/restful",       "HTTP/RESTful"],
           ["HTTP::RESTfulAPI",  "http/restful_api",   "HTTP/RESTful API"],
           ["APIRESTful",        "api_restful",        "API RESTful"],
+          ["CSRF",              "csrf",               "Cross Site Request Forgery"],
 
           # misdirection
           %w[Capistrano capistrano Capistrano],
@@ -42,6 +43,7 @@ RSpec.describe Dry::Inflector do
           expect(subject.camelize(camel)).to eql(camel)
           expect(subject.underscore(camel)).to eql(under)
           expect(subject.underscore(under)).to eql(under)
+
           expect(subject.humanize(human)).to eql(human)
         end
       end
