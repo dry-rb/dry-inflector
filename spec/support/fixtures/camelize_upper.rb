@@ -14,6 +14,7 @@ module Fixtures
       "merb" => "Merb",
       "data_mapper" => "DataMapper",
       "data-mapper" => "DataMapper",
+      "data---mapper" => "DataMapper",
       "dry/inflector" => "Dry::Inflector",
       "dry/inflector/inflections" => "Dry::Inflector::Inflections",
       "blog_post/author" => "BlogPost::Author",
