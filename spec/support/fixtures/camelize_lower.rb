@@ -13,6 +13,7 @@ module Fixtures
     CASES = {
       "merb" => "merb",
       "data_mapper" => "dataMapper",
+      "data___mapper" => "dataMapper",
       "dry/inflector" => "dry::Inflector",
       "dry/inflector/inflections" => "dry::Inflector::Inflections",
       "blog_post/author" => "blogPost::Author",
