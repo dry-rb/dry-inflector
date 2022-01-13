@@ -1,4 +1,7 @@
 ---
+- version: unreleased
+  changed: 
+  - 'Extra dashes are now omitted when converting to camelcase (via #40) (@postmodern)'
 - version: 0.2.1
   summary: 
   date: '2021-06-30'
