@@ -314,7 +314,7 @@ module Dry
 
     # @since 0.1.0
     # @api private
-    ORDINALIZE_TH = { 11 => true, 12 => true, 13 => true }.freeze
+    ORDINALIZE_TH = {11 => true, 12 => true, 13 => true}.freeze
 
     # @since 0.1.2
     # @api private
@@ -327,7 +327,7 @@ module Dry
     def internal_camelize(input, upper)
       input = input.to_s.dup
       input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, capitalize: upper) }
-      input.gsub!(%r{(?:[_-]|(\/))([a-z\d]*)}i) do
+      input.gsub!(%r{(?:[_-]|(/))([a-z\d]*)}i) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
         "#{m1}#{inflections.acronyms.apply_to(m2)}"
