@@ -102,7 +102,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.classify("books") # => "Book"
     def classify(input)
-      camelize(singularize(input.to_s.sub(/.*\./, "")))
+      camelize(singularize(input.to_s.split(".").last))
     end
 
     # Dasherize a string
@@ -153,10 +153,10 @@ module Dry
     def humanize(input)
       input = input.to_s
       result = inflections.humans.apply_to(input)
-      result.chomp!("_id")
+      result.delete_suffix!("_id")
       result.tr!("_", " ")
-      match = /(?<separator>\W)/.match(result)
-      separator = match ? match[:separator] : DEFAULT_SEPARATOR
+      match = /(\W)/.match(result)
+      separator = match ? match[0] : DEFAULT_SEPARATOR
       result.split(separator).map.with_index { |word, index|
         inflections.acronyms.apply_to(word, capitalize: index.zero?)
       }.join(separator)
@@ -195,7 +195,7 @@ module Dry
     def ordinalize(number)
       abs_value = number.abs
 
-      if ORDINALIZE_TH.key?(abs_value % 100)
+      if ORDINALIZE_TH[abs_value % 100]
         "#{number}th"
       else
         case abs_value % 10
@@ -260,7 +260,7 @@ module Dry
     #   inflector = Dry::Inflector.new
     #   inflector.tableize("Book") # => "books"
     def tableize(input)
-      input = input.to_s.gsub(/::/, "_")
+      input = input.to_s.gsub("::", "_")
       pluralize(underscore(input))
     end
 
@@ -298,7 +298,7 @@ module Dry
     # @since 0.1.0
     # @api private
     def uncountable?(input)
-      !(input =~ /\A[[:space:]]*\z/).nil? || inflections.uncountables.include?(input.downcase)
+      input.match?(/\A[[:space:]]*\z/) || inflections.uncountables.include?(input.downcase)
     end
 
     # @return [String]
@@ -314,7 +314,7 @@ module Dry
 
     # @since 0.1.0
     # @api private
-    ORDINALIZE_TH = (11..13).each_with_object({}) { |n, ret| ret[n] = true }.freeze
+    ORDINALIZE_TH = { 11 => true, 12 => true, 13 => true }.freeze
 
     # @since 0.1.2
     # @api private
@@ -327,7 +327,7 @@ module Dry
     def internal_camelize(input, upper)
       input = input.to_s.dup
       input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, capitalize: upper) }
-      input.gsub!(%r{(?:[_-]|(/))([a-z\d]*)}i) do
+      input.gsub!(%r{(?:[_-]|(\/))([a-z\d]*)}i) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
         "#{m1}#{inflections.acronyms.apply_to(m2)}"
