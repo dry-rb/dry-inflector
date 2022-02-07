@@ -13,5 +13,5 @@ require "dry/inflector"
 
 require "irb"
 Dry::Inflector.new.instance_exec do
-  binding.irb # rubocop:disable Lint/Debugger
+  binding.irb
 end

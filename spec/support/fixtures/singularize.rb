@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Fixtures
+  # rubocop:disable Metrics/ModuleLength
   module Singularize
     def self.cases
       CASES
@@ -179,4 +180,5 @@ module Fixtures
       "postgres" => "postgres"
     }.freeze
   end
+  # rubocop:enable Metrics/ModuleLength
 end
