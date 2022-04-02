@@ -11,7 +11,7 @@
 [![CI Status](https://github.com/dry-rb/dry-inflector/workflows/ci/badge.svg)][actions]
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/00339f2fb77840149f999cac6110c8a8)][codacy]
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/00339f2fb77840149f999cac6110c8a8)][codacy]
-[![Inline docs](http://inch-ci.org/github/dry-rb/dry-inflector.svg?branch=master)][inchpages]
+[![Inline docs](http://inch-ci.org/github/dry-rb/dry-inflector.svg?branch=main)][inchpages]
 
 ## Links
 
