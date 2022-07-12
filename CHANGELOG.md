@@ -3,6 +3,23 @@
 ## unreleased 
 
 
+### Added
+
+- Add CSV as default acronym (via #43) (@waiting-for-dev)
+
+### Changed
+
+- Extra dashes are now omitted when converting to camelcase (via #40) (@postmodern)
+
+[Compare vunreleased...master](https://github.com/dry-rb/dry-inflector/compare/vunreleased...master)
+
+## unreleased 
+
+
+### Added
+
+- Add CSV as default acronym (via #43) (@waiting-for-dev)
+
 ### Changed
 
 - Extra dashes are now omitted when converting to camelcase (via #40) (@postmodern)
