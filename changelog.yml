@@ -1,13 +1,21 @@
 ---
 - version: unreleased
-  changed: 
+  summary: 
+  date: 
+  fixed: 
+  added: &2
+  - 'Add CSV as default acronym (via #43) (@waiting-for-dev)'
+  changed: &1
   - 'Extra dashes are now omitted when converting to camelcase (via #40) (@postmodern)'
+- version: unreleased
+  changed: *1
+  added: *2
 - version: 0.2.1
   summary: 
   date: '2021-06-30'
   fixed:
   - 'Fix singularizing -us suffix (issue #33 via #38) (@cllns)'
-  added: 
+  added:
   - 'Add default acronyms: API and CSRF (#35) (@jodosha)'
   changed: 
 - version: 0.2.0
