@@ -8,6 +8,8 @@ module Dry
     require "dry/inflector/version"
     require "dry/inflector/inflections"
 
+    attr_reader :inflections
+
     # Instantiate the inflector
     #
     # @param blk [Proc] an optional block to specify custom inflection rules
@@ -310,6 +312,11 @@ module Dry
     end
     alias_method :inspect, :to_s
 
+    def freeze
+      inflections.freeze
+      super
+    end
+
     private
 
     # @since 0.1.0
@@ -319,8 +326,6 @@ module Dry
     # @since 0.1.2
     # @api private
     DEFAULT_SEPARATOR = " "
-
-    attr_reader :inflections
 
     # @since 0.1.3
     # @api private

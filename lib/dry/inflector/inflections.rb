@@ -149,6 +149,8 @@ module Dry
       #     inflections.singular "octopus", "octopi"
       #   end
       def irregular(singular, plural)
+        fail FrozenError, "can't modify a frozen inflection" if frozen?
+
         uncountables.delete(singular)
         uncountables.delete(plural)
 
@@ -173,6 +175,8 @@ module Dry
       #     inflections.uncountable %w(money information rice)
       #   end
       def uncountable(*words)
+        fail FrozenError, "can't modify a frozen inflection" if frozen?
+
         uncountables.merge(words.flatten)
       end
 
@@ -195,6 +199,8 @@ module Dry
       #   inflector.camelize("html")        # => "HTML"
       #   inflector.underscore("HTMLIsFun") # => "html_is_fun"
       def acronym(*words)
+        fail FrozenError, "can't modify a frozen inflection" if frozen?
+
         words.each { |word| @acronyms.add(word.downcase, word) }
       end
 
@@ -222,7 +228,18 @@ module Dry
       #     inflections.human("legacy_col_person_name", "Name")
       #   end
       def human(rule, replacement)
+        fail FrozenError, "can't modify a frozen inflection" if frozen?
+
         humans.insert(0, [rule, replacement])
+      end
+
+      def freeze
+        @plurals.freeze
+        @singulars.freeze
+        @humans.freeze
+        @uncountables.freeze
+        @acronyms.freeze
+        super
       end
 
       private
@@ -250,6 +267,8 @@ module Dry
       # @since 0.1.0
       # @api private
       def rule(rule, replacement, target)
+        fail FrozenError, "can't modify a frozen inflection" if frozen?
+
         uncountables.delete(rule)
         uncountables.delete(replacement)
 
