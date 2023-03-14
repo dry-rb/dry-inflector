@@ -21,13 +21,12 @@ RSpec.describe Dry::Inflector do
     end
 
     it "freezes an inflections" do
-      expect { inflector.inflections.plural('ooh', 'ooh') }.to raise_error(FrozenError, "can't modify a frozen inflection")
-      expect { inflector.inflections.singular('ooh', 'ooh') }.to raise_error(FrozenError, "can't modify a frozen inflection")
-      expect { inflector.inflections.irregular('ooh', 'ooh') }.to raise_error(FrozenError, "can't modify a frozen inflection")
-      expect { inflector.inflections.uncountable('ooh') }.to raise_error(FrozenError, "can't modify a frozen inflection")
-      expect { inflector.inflections.acronym('ooh') }.to raise_error(FrozenError, "can't modify a frozen inflection")
-      expect { inflector.inflections.human('barbra', 'streisand') }.to raise_error(FrozenError, "can't modify a frozen inflection")
+      expect { inflector.inflections.plural("ooh", "ooh") }.to raise_error(FrozenError, "can't modify a frozen inflection")
+      expect { inflector.inflections.singular("ooh", "ooh") }.to raise_error(FrozenError, "can't modify a frozen inflection")
+      expect { inflector.inflections.irregular("ooh", "ooh") }.to raise_error(FrozenError, "can't modify a frozen inflection")
+      expect { inflector.inflections.uncountable("ooh") }.to raise_error(FrozenError, "can't modify a frozen inflection")
+      expect { inflector.inflections.acronym("ooh") }.to raise_error(FrozenError, "can't modify a frozen inflection")
+      expect { inflector.inflections.human("barbra", "streisand") }.to raise_error(FrozenError, "can't modify a frozen inflection")
     end
   end
-
 end

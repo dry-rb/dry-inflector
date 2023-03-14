@@ -312,6 +312,12 @@ module Dry
     end
     alias_method :inspect, :to_s
 
+    # Freeze the inflector instance
+    #
+    # Forbid later additions to the inflector rules
+    #
+    # @since 1.1.0
+    #
     def freeze
       inflections.freeze
       super
