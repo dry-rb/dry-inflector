@@ -75,7 +75,7 @@ module Dry
           inflect.singular(/(cris|ax|test)(is|es)\z/i, '\1is')
           inflect.singular(/(octop|vir)(us|i)\z/i, '\1us')
           inflect.singular(/(alias|status)(es)?\z/i, '\1')
-          inflect.singular(/^(ox)en/i, '\1')
+          inflect.singular(/(ox)en/i, '\1')
           inflect.singular(/(vert|ind)ices\z/i, '\1ex')
           inflect.singular(/(matr)ices\z/i, '\1ix')
           inflect.singular(/(quiz)zes\z/i, '\1')
