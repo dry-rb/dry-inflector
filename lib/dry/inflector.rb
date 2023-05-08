@@ -298,7 +298,9 @@ module Dry
     # @since 0.1.0
     # @api private
     def uncountable?(input)
-      input.match?(/\A[[:space:]]*\z/) || inflections.uncountables.include?(input.downcase)
+      input.match?(/\A[[:space:]]*\z/) ||
+        inflections.uncountables.include?(input.downcase) ||
+        inflections.uncountables.include?(input.split(/_|\b/).last.downcase)
     end
 
     # @return [String]
