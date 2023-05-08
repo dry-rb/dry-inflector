@@ -56,7 +56,7 @@ module Dry
           inflect.singular(/s\z/i, "")
           inflect.singular(/(n)ews\z/i, '\1ews')
           inflect.singular(/([ti])a\z/i, '\1um')
-          inflect.singular(/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)(sis|ses)\z/i,
+          inflect.singular(/(analy|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)(sis|ses)\z/i,
                            '\1\2sis')
           inflect.singular(/(^analy)(sis|ses)\z/i, '\1sis')
           inflect.singular(/([^f])ves\z/i, '\1fe')
