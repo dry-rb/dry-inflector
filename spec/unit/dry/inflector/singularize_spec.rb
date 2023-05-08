@@ -6,6 +6,18 @@ RSpec.describe Dry::Inflector do
       it "singularizes #{plural} => #{singular}" do
         expect(subject.singularize(i(plural))).to eq(singular)
       end
+
+      it "singularizes test_#{plural} => test_#{singular}" do
+        expect(subject.singularize(i("test_#{plural}"))).to eq("test_#{singular}")
+      end
+
+      it "singularizes test-#{plural} => test-#{singular}" do
+        expect(subject.singularize(i("test-#{plural}"))).to eq("test-#{singular}")
+      end
+
+      it "singularizes 'test #{plural}' => 'test #{singular}'" do
+        expect(subject.singularize(i("test #{plural}"))).to eq("test #{singular}")
+      end
     end
 
     Fixtures::Singularize.pending.each do |plural, singular|
