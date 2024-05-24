@@ -114,6 +114,7 @@ module Dry
             API
             CSRF
             CSV
+            DB
             HMAC
             HTTP
             JSON
