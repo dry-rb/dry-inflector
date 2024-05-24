@@ -110,7 +110,15 @@ module Dry
         # @since 0.1.2
         # @api private
         def self.acronyms(inflect)
-          inflect.acronym(*%w[JSON HTTP OpenSSL HMAC CSRF API CSV])
+          inflect.acronym(*%w[
+            API
+            CSRF
+            CSV
+            HMAC
+            HTTP
+            JSON
+            OpenSSL
+          ])
         end
 
         private_class_method :plural, :singular, :irregular, :uncountable, :acronyms
