@@ -1,4 +1,13 @@
 ---
+- version: 1.1.0
+  summary:
+  date: 2024-07-02
+  added:
+    - |-
+      Added "DB" as a default acronym (#49) (@timriley)
+  fixed:
+    - |-
+      Fix incorrect inflections on words separated by spaces, underscores or hyphens (#47) (@parndt)
 - version: 1.0.0
   summary:
   date: 2022-11-04
