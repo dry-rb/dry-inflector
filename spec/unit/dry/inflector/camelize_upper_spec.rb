@@ -47,6 +47,8 @@ RSpec.describe Dry::Inflector do
       it "handles diacritics" do
         expect(subject.camelize_upper(i("éclair_fest"))).to eql("ÉclairFest")
         expect(subject.camelize_upper(i("éua-trip"))).to eql("ÉUATrip")
+        expect(subject.camelize_upper(i("festival_des_éclairs"))).to eql("FestivalDesÉclairs")
+        expect(subject.camelize_upper(i("festival_des_4k"))).to eql("FestivalDes4K")
       end
     end
   end
