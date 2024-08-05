@@ -155,7 +155,7 @@ module Dry
       result = inflections.humans.apply_to(input)
       result.delete_suffix!("_id")
       result.tr!("_", " ")
-      match = /(\W)/.match(result)
+      match = /([^[:alnum:]])/.match(result)
       separator = match ? match[0] : DEFAULT_SEPARATOR
       result.split(separator).map.with_index { |word, index|
         inflections.acronyms.apply_to(word, capitalize: index.zero?)
