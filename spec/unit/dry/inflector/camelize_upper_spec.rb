@@ -30,7 +30,7 @@ RSpec.describe Dry::Inflector do
     context "custom acronyms" do
       subject do
         Dry::Inflector.new do |inflect|
-          inflect.acronym("IP", "HTML", "XML", "BSD")
+          inflect.acronym("IP", "HTML", "XML", "BSD", "ÉUA", "4K")
         end
       end
 
@@ -41,6 +41,12 @@ RSpec.describe Dry::Inflector do
         expect(subject.camelize_upper(i("html_tidy_generator"))).to eql("HTMLTidyGenerator")
         expect(subject.camelize_upper(i("force_xml_controller"))).to eql("ForceXMLController")
         expect(subject.camelize_upper(i("free_bsd"))).to eql("FreeBSD")
+        expect(subject.camelize_upper(i("4k-television"))).to eql("4KTelevision")
+      end
+
+      it "handles diacritics" do
+        expect(subject.camelize_upper(i("éclair_fest"))).to eql("ÉclairFest")
+        expect(subject.camelize_upper(i("éua-trip"))).to eql("ÉUATrip")
       end
     end
   end
