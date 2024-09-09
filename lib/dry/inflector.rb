@@ -328,7 +328,9 @@ module Dry
     # @api private
     def internal_camelize(input, upper)
       input = input.to_s.dup
-      input.sub!(/^[[:lower:][:digit:]]*/) { |match| inflections.acronyms.apply_to(match, capitalize: upper) }
+      input.sub!(/^[[:lower:][:digit:]]*/) do |match|
+        inflections.acronyms.apply_to(match, capitalize: upper)
+      end
       input.gsub!(%r{(?:[_-]|(/))([[:lower:][:digit:]]*)}i) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
