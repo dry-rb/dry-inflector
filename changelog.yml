@@ -1,4 +1,9 @@
 ---
+- version: 1.2.0
+  summary:
+  date: 2025-01-04
+  changed:
+    - "Bumped required Ruby version to 3.1 (@flash-gordon)"
 - version: 1.1.0
   summary:
   date: 2024-07-02
