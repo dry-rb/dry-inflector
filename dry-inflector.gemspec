@@ -27,10 +27,4 @@ Gem::Specification.new do |spec|
   spec.metadata["bug_tracker_uri"]   = "https://github.com/dry-rb/dry-inflector/issues"
 
   spec.required_ruby_version = ">= 3.1"
-
-  # to update dependencies edit project.yml
-
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
 end

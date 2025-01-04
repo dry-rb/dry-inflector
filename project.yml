@@ -4,7 +4,3 @@ gemspec:
   authors: ["Luca Guidi", "Andrii Savchenko", "Abinoam P. Marques Jr."]
   email: ["me@lucaguidi.com", "andrey@aejis.eu", "abinoam@gmail.com"]
   summary: "String inflections for dry-rb"
-  development_dependencies:
-    - bundler
-    - rake
-    - rspec
