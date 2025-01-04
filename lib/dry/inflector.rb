@@ -30,8 +30,8 @@ module Dry
     #     inflections.singular    "thieves", "thief"   # specify a rule for #singularize
     #     inflections.uncountable "dry-inflector"      # add an exception for an uncountable word
     #   end
-    def initialize(&blk)
-      @inflections = Inflections.build(&blk)
+    def initialize(&)
+      @inflections = Inflections.build(&)
     end
 
     # Lower camelize a string

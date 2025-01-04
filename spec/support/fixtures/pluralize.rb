@@ -25,6 +25,7 @@ module Fixtures
       "goose" => "geese"
     }.freeze
 
+    # rubocop:disable Metrics/CollectionLiteralLength
     CASES = {
       #
       # Test cases from Inflecto
@@ -394,8 +395,10 @@ module Fixtures
       "bosses" => "bosses",
       "classes" => "classes",
       "glasses" => "glasses",
-      "kisses" => "kisses"
-    }.merge(IRREGULAR).freeze
+      "kisses" => "kisses",
+      **IRREGULAR
+    }.freeze
+    # rubocop:enable Metrics/CollectionLiteralLength
 
     # Missing rule or exception?
     PENDING = {

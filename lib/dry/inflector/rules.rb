@@ -29,8 +29,8 @@ module Dry
 
       # @since 0.1.0
       # @api private
-      def each(&blk)
-        @rules.each(&blk)
+      def each(&)
+        @rules.each(&)
       end
     end
   end
