@@ -1,6 +1,0 @@
-name: dry-inflector
-codacy_id: 00339f2fb77840149f999cac6110c8a8
-gemspec:
-  authors: ["Luca Guidi", "Andrii Savchenko", "Abinoam P. Marques Jr."]
-  email: ["me@lucaguidi.com", "andrey@aejis.eu", "abinoam@gmail.com"]
-  summary: "String inflections for dry-rb"
