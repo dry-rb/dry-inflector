@@ -25,7 +25,6 @@ module Fixtures
       "goose" => "geese"
     }.freeze
 
-    # rubocop:disable Metrics/CollectionLiteralLength
     CASES = {
       #
       # Test cases from Inflecto
