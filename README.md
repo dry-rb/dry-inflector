@@ -7,7 +7,7 @@
 
 ## Links
 
-- [User documentation](<no value>)
+- [User documentation](https://dry-rb.org/gems/dry-inflector)
 - [API documentation](http://rubydoc.info/gems/dry-inflector)
 - [Forum](https://discourse.dry-rb.org)
 
