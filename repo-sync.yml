@@ -7,7 +7,6 @@ gemspec:
   email: ["info@hanakai.org"]
   summary: "String inflections for dry-rb"
   homepage: "https://dry-rb.org/gems/dry-inflector"
-  required_ruby_version: ">= 3.1"
   development_dependencies:
     - bundler
     - rake
