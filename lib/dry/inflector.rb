@@ -300,7 +300,7 @@ module Dry
     def uncountable?(input)
       input.match?(/\A[[:space:]]*\z/) ||
         inflections.uncountables.include?(input.downcase) ||
-        inflections.uncountables.include?(input.split(/_|\b/).last.downcase)
+        inflections.uncountables.include?(input.rpartition(/_|\b(?!\z)/).last.downcase)
     end
 
     # @return [String]
