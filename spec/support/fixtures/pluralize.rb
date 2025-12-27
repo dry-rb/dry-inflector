@@ -59,6 +59,7 @@ module Fixtures
       "grass" => "grass",
       "drive" => "drives",
       # ==== bugs, typos and reported issues
+      "use" => "uses",
 
       # ==== rules and most common cases
 
