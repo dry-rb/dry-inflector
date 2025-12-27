@@ -59,6 +59,7 @@ module Fixtures
       "grass" => "grass",
       "drive" => "drives",
       # ==== bugs, typos and reported issues
+      "property_fee" => "property_fees",
 
       # ==== rules and most common cases
 
