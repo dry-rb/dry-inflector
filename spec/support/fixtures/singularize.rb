@@ -69,6 +69,8 @@ module Fixtures
       "bonuses" => "bonus",
       "geniuses" => "genius",
       "walruses" => "walrus",
+      "taxes" => "tax",
+      "fixes" => "fix",
 
       # ==== rules
 
