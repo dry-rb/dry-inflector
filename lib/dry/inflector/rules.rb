@@ -16,21 +16,18 @@ module Dry
       # @since 0.1.0
       # @api private
       def apply_to(word)
-        result = word.dup
-        each { |rule, replacement| break if result.gsub!(rule, replacement) }
-        result
+        matching_rule = @rules.find { |rule, _replacement| rule.match? word }
+        if matching_rule
+          word.gsub(matching_rule[0], matching_rule[1])
+        else
+          word
+        end.dup
       end
 
       # @since 0.1.0
       # @api private
       def insert(index, array)
         @rules.insert(index, array)
-      end
-
-      # @since 0.1.0
-      # @api private
-      def each(&)
-        @rules.each(&)
       end
     end
   end
