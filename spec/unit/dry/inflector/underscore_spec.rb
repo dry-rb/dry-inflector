@@ -34,6 +34,10 @@ RSpec.describe Dry::Inflector do
       expect(subject.underscore(i("CLIRunner"))).to eq("cli_runner")
     end
 
+    it "underscores aCli as a_cli" do
+      expect(subject.underscore(i("aCLI"))).to eq("a_cli")
+    end
+
     it "accepts symbols" do
       expect(subject.underscore(:DataMapper)).to eq("data_mapper")
     end
@@ -43,6 +47,46 @@ RSpec.describe Dry::Inflector do
       expect(subject.underscore(i("HTTPError"))).to eql("http_error")
       expect(subject.underscore(i("OpenSSL::HMAC"))).to eql("openssl/hmac")
       expect(subject.underscore(i("OpenSSL::Digest"))).to eql("openssl/digest")
+    end
+
+    it "handles plural acronyms" do
+      expect(subject.underscore(i("CustomerAPIs"))).to eql("customer_apis")
+    end
+
+    it "handles diacritics" do
+      expect(subject.underscore(i("éclairFest"))).to eql("éclair_fest")
+      expect(subject.underscore(i("éuaTrip"))).to eql("éua_trip")
+      expect(subject.underscore(i("festival-des-éclairs"))).to eql("festival_des_éclairs")
+      expect(subject.underscore(i("ÉBellisimo"))).to eql("é_bellisimo")
+      expect(subject.underscore(i("éBellisimo"))).to eql("é_bellisimo")
+    end
+
+    it "handles number followed by uppercase letter" do
+      expect(subject.underscore(i("9Lives"))).to eql("9_lives")
+    end
+
+    pending "handles number followed by lowercase letter" do
+      pending "this should be `7_ate_9`"
+      expect(subject.underscore(i("7Ate9"))).to eql("7_ate_9")
+    end
+
+    it "handles number followed by lowercase letter" do
+      pending "this should be 9_lives"
+      expect(subject.underscore(i("9lives"))).to eql("9_lives")
+    end
+
+    it "handle leading diacritic" do
+      expect(subject.underscore(i("éBellisimo"))).to eql("é_bellisimo")
+    end
+
+    it "handles leading number " do
+      pending "this should be 1_is_one"
+      expect(subject.underscore(i("1isOne"))).to eql("1_is_one")
+    end
+
+    it "handles leading number with diacritic" do
+      pending "this should be 1_é_bellisimo"
+      expect(subject.underscore(i("1éBellisimo"))).to eql("1_é_bellisimo")
     end
   end
 end

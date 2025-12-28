@@ -35,6 +35,7 @@ module Dry
           inflect.plural(/([ti])a\z/i, '\1a')
           inflect.plural(/sis\z/i, "ses")
           inflect.plural(/(.*)(?:([^f]))fe*\z/i, '\1\2ves')
+          inflect.plural(/(ee)\z/i, '\1s')
           inflect.plural(/(hive|proof)\z/i, '\1s') # TODO: proof can be moved in the above regexp
           inflect.plural(/([^aeiouy]|qu)y\z/i, '\1ies')
           inflect.plural(/(x|ch|ss|sh)\z/i, '\1es')
@@ -70,6 +71,7 @@ module Dry
           inflect.singular(/(x|ch|ss|sh)es\z/i, '\1')
           inflect.singular(/([m|l])ice\z/i, '\1ouse')
           inflect.singular(/(us)(?:es)?\z/i, '\1')
+          inflect.singular(/(\b|_|-)([eou])ses\z/i, '\1\2se')
           inflect.singular(/(o)es\z/i, '\1')
           inflect.singular(/(shoe)s\z/i, '\1')
           inflect.singular(/(cris|ax|test)(?:is|es)\z/i, '\1is')
@@ -80,6 +82,7 @@ module Dry
           inflect.singular(/(matr)ices\z/i, '\1ix')
           inflect.singular(/(quiz)zes\z/i, '\1')
           inflect.singular(/(database)s\z/i, '\1')
+          inflect.singular(/([a-hj-z][aeiou])xes\z/i, '\1x')
         end
 
         # @since 0.1.0

@@ -14,23 +14,20 @@ on:
 jobs:
   tests:
     name: Tests (Ruby ${{ matrix.ruby }})
-    permissions:
-      pull-requests: write
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.optional || false }}
     strategy:
       fail-fast: false
       matrix:
         ruby:
+          - "4.0"
           - "3.4"
           - "3.3"
           - "3.2"
         include:
-          - ruby: "3.4"
+          - ruby: "4.0"
             coverage: "true"
           - ruby: "jruby"
-            optional: true
-          - ruby: "4.0.0-preview2"
             optional: true
     env:
       COVERAGE: ${{ matrix.coverage }}
@@ -56,13 +53,14 @@ jobs:
             exit 0  # Ignore error here to keep the green checkmark
           fi
           exit ${status}
-      - name: Add comment for optional failures
-        uses: thollander/actions-comment-pull-request@v3
+      - name: Create optional failure comment
         if: ${{ matrix.optional && github.event.pull_request }}
+        uses: hanakai-rb/repo-sync/pr-comment-artifact@main
         with:
-          comment-tag: "${{ matrix.ruby }}-optional-failure-notice"
-          message: |
-            ℹ️ Optional job failed: Ruby ${{ matrix.ruby }}
+          name: ci-ruby-${{ matrix.ruby }}
+          pr-number: ${{ github.event.pull_request.number }}
+          comment-tag: ruby-${{ matrix.ruby }}-optional-failure
+          message: "ℹ️ Optional job failed: Ruby ${{ matrix.ruby }}"
           mode: ${{ steps.test.outputs.optional_fail == 'true' && 'upsert' || 'delete' }}
 
   workflow-keepalive:
