@@ -70,6 +70,9 @@ module Fixtures
       "geniuses" => "genius",
       "walruses" => "walrus",
 
+      "thieves" => "thief",
+      "leaves" => "leaf",
+
       # ==== rules
 
       "forums" => "forum",
@@ -175,7 +178,6 @@ module Fixtures
       "thesauri" => "thesaurus",
       "phenomena" => "phenomenon",
       "drives" => "drive",
-      "thieves" => "thief",
       "criteria" => "criterion",
       "postgres" => "postgres"
     }.freeze
