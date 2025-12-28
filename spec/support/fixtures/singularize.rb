@@ -70,6 +70,8 @@ module Fixtures
       "geniuses" => "genius",
       "walruses" => "walrus",
       "uses" => "use",
+      "taxes" => "tax",
+      "fixes" => "fix",
 
       # ==== rules
 

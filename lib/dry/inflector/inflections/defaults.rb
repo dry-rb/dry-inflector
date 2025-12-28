@@ -81,6 +81,7 @@ module Dry
           inflect.singular(/(matr)ices\z/i, '\1ix')
           inflect.singular(/(quiz)zes\z/i, '\1')
           inflect.singular(/(database)s\z/i, '\1')
+          inflect.singular(/([a-hj-z][aeiou])xes\z/i, '\1x')
         end
 
         # @since 0.1.0
