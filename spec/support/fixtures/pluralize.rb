@@ -59,6 +59,8 @@ module Fixtures
       "grass" => "grass",
       "drive" => "drives",
       # ==== bugs, typos and reported issues
+      "property_fee" => "property_fees",
+      "use" => "uses",
 
       # ==== rules and most common cases
 
@@ -394,8 +396,10 @@ module Fixtures
       "bosses" => "bosses",
       "classes" => "classes",
       "glasses" => "glasses",
-      "kisses" => "kisses"
-    }.merge(IRREGULAR).freeze
+      "kisses" => "kisses",
+      **IRREGULAR
+    }.freeze
+    # rubocop:enable Metrics/CollectionLiteralLength
 
     # Missing rule or exception?
     PENDING = {

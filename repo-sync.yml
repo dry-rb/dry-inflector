@@ -1,0 +1,13 @@
+name:
+  gem: dry-inflector
+  constant: Dry::Inflector
+github_org: dry-rb
+gemspec:
+  authors: ["Hanakai team"]
+  email: ["info@hanakai.org"]
+  summary: "String inflections for dry-rb"
+  homepage: "https://dry-rb.org/gems/dry-inflector"
+  development_dependencies:
+    - bundler
+    - rake
+    - rspec

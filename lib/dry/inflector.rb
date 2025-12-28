@@ -30,8 +30,8 @@ module Dry
     #     inflections.singular    "thieves", "thief"   # specify a rule for #singularize
     #     inflections.uncountable "dry-inflector"      # add an exception for an uncountable word
     #   end
-    def initialize(&blk)
-      @inflections = Inflections.build(&blk)
+    def initialize(&)
+      @inflections = Inflections.build(&)
     end
 
     # Lower camelize a string
@@ -283,7 +283,7 @@ module Dry
         m2 = Regexp.last_match(2)
         "#{m1 ? "_" : ""}#{m2.downcase}"
       end
-      input.gsub!(/([[:upper:][:digit:]]+)([[:upper:]][[:lower:]])/, '\1_\2')
+      input.gsub!(/([[:upper:][:digit:]]+)([[:upper:]][[:lower:]])(?=[[:lower:]])/, '\1_\2')
       input.gsub!(/([[:lower:][:digit:]])([[:upper:]])/, '\1_\2')
       input.tr!("-", "_")
       input.downcase!

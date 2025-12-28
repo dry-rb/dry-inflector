@@ -48,6 +48,10 @@ RSpec.describe Dry::Inflector do
       expect(subject.underscore(i("OpenSSL::HMAC"))).to eql("openssl/hmac")
       expect(subject.underscore(i("OpenSSL::Digest"))).to eql("openssl/digest")
     end
+    
+    it "handles plural acronyms" do
+      expect(subject.underscore(i("CustomerAPIs"))).to eql("customer_apis")
+    end
 
     it "handles diacritics" do
       expect(subject.underscore(i("éclairFest"))).to eql("éclair_fest")

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "set"
 require "dry/inflector/rules"
 require "dry/inflector/acronyms"
 
