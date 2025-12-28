@@ -155,7 +155,7 @@ module Dry
       result = inflections.humans.apply_to(input)
       result.delete_suffix!("_id")
       result.tr!("_", " ")
-      match = /(\W)/.match(result)
+      match = /([^[:alnum:]])/.match(result)
       separator = match ? match[0] : DEFAULT_SEPARATOR
       result.split(separator).map.with_index { |word, index|
         inflections.acronyms.apply_to(word, capitalize: index.zero?)
@@ -283,8 +283,8 @@ module Dry
         m2 = Regexp.last_match(2)
         "#{m1 ? "_" : ""}#{m2.downcase}"
       end
-      input.gsub!(/([A-Z\d]+)([A-Z][a-z])(?=[a-z])/, '\1_\2')
-      input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
+      input.gsub!(/([[:upper:][:digit:]]+)([[:upper:]][[:lower:]])(?=[[:lower:]])/, '\1_\2')
+      input.gsub!(/([[:lower:][:digit:]])([[:upper:]])/, '\1_\2')
       input.tr!("-", "_")
       input.downcase!
       input
@@ -328,8 +328,10 @@ module Dry
     # @api private
     def internal_camelize(input, upper)
       input = input.to_s.dup
-      input.sub!(/^[a-z\d]*/) { |match| inflections.acronyms.apply_to(match, capitalize: upper) }
-      input.gsub!(%r{(?:[_-]|(/))([a-z\d]*)}i) do
+      input.sub!(/^[[:lower:][:digit:]]*/) do |match|
+        inflections.acronyms.apply_to(match, capitalize: upper)
+      end
+      input.gsub!(%r{(?:[_-]|(/))([[:lower:][:digit:]]*)}i) do
         m1 = Regexp.last_match(1)
         m2 = Regexp.last_match(2)
         "#{m1}#{inflections.acronyms.apply_to(m2)}"

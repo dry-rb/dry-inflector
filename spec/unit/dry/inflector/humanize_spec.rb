@@ -29,5 +29,9 @@ RSpec.describe Dry::Inflector do
       expect(subject.humanize(i("openssl/hmac"))).to eql("OpenSSL/HMAC")
       expect(subject.humanize(i("openssl/digest"))).to eql("OpenSSL/digest")
     end
+
+    it "handles diacritics" do
+      expect(subject.humanize(i("éclair"))).to eql("Éclair")
+    end
   end
 end
