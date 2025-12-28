@@ -31,7 +31,7 @@ module Dry
           inflect.plural(/(octop|vir)i\z/i, '\1i')
           inflect.plural(/(alias|status)\z/i, '\1es')
           inflect.plural(/(buffal|domin|ech|embarg|her|mosquit|potat|tomat)o\z/i, '\1oes')
-          inflect.plural(/(?<!b)um\z/i, '\1a')
+          inflect.plural(/(?<!b)um\z/i, "a")
           inflect.plural(/([ti])a\z/i, '\1a')
           inflect.plural(/sis\z/i, "ses")
           inflect.plural(/(.*)(?:([^f]))fe*\z/i, '\1\2ves')
