@@ -283,7 +283,7 @@ module Dry
         m2 = Regexp.last_match(2)
         "#{m1 ? "_" : ""}#{m2.downcase}"
       end
-      input.gsub!(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
+      input.gsub!(/([A-Z\d]+)([A-Z][a-z])(?=[a-z])/, '\1_\2')
       input.gsub!(/([a-z\d])([A-Z])/, '\1_\2')
       input.tr!("-", "_")
       input.downcase!
