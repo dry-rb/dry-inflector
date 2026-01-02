@@ -73,6 +73,9 @@ module Fixtures
       "taxes" => "tax",
       "fixes" => "fix",
 
+      "thieves" => "thief",
+      "leaves" => "leaf",
+
       # ==== rules
 
       "forums" => "forum",
@@ -178,7 +181,6 @@ module Fixtures
       "thesauri" => "thesaurus",
       "phenomena" => "phenomenon",
       "drives" => "drive",
-      "thieves" => "thief",
       "criteria" => "criterion",
       "postgres" => "postgres"
     }.freeze
