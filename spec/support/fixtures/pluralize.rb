@@ -339,6 +339,9 @@ module Fixtures
       "thief" => "thieves",
       # vocal + fe => ves
       "knife" => "knives",
+      # NOT f => ves
+      "roof" => "roofs",
+      "chief" => "chiefs",
       # eau => eaux
       "beau" => "beaux",
       "bureau" => "bureaux",
