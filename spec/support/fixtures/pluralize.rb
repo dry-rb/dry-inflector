@@ -307,6 +307,7 @@ module Fixtures
       "coitus" => "coituses",
       "plexus" => "plexuses",
       "hiatus" => "hiatuses",
+      "virus" => "viruses",
       # man => mans
       "human" => "humans",
       # ch => es
