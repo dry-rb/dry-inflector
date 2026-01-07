@@ -8,6 +8,6 @@
 /spec/reports/
 /tmp/
 .DS_Store
-/.rubocop-http*
+/.rubocop-*
 # editors
 .vscode

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Fixtures
-  # rubocop:disable Metrics/ModuleLength
   module Pluralize
     def self.cases
       CASES
