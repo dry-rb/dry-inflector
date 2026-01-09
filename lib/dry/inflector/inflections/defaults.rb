@@ -27,24 +27,20 @@ module Dry
           inflect.plural(/s\z/i, "s")
           inflect.plural(/(ax|test)is\z/i, '\1es')
           inflect.plural(/(.*)us\z/i, '\1uses')
-          inflect.plural(/(octop|vir|cact)us\z/i, '\1i')
-          inflect.plural(/(octop|vir)i\z/i, '\1i')
+          inflect.plural(/(octop|cact)us\z/i, '\1i')
           inflect.plural(/(alias|status)\z/i, '\1es')
           inflect.plural(/(buffal|domin|ech|embarg|her|mosquit|potat|tomat)o\z/i, '\1oes')
-          inflect.plural(/(?<!b)um\z/i, '\1a')
+          inflect.plural(/(?<!b|for)um\z/i, "a")
           inflect.plural(/([ti])a\z/i, '\1a')
           inflect.plural(/sis\z/i, "ses")
-          inflect.plural(/(.*)(?:([^f]))fe*\z/i, '\1\2ves')
-          inflect.plural(/(ee)\z/i, '\1s')
-          inflect.plural(/(hive|proof)\z/i, '\1s') # TODO: proof can be moved in the above regexp
+          inflect.plural(/(.*)(?:([^f]))fe?\z/i, '\1\2ves')
+          inflect.plural(/(roof|chief|ee|hive|proof)\z/i, '\1s')
           inflect.plural(/([^aeiouy]|qu)y\z/i, '\1ies')
           inflect.plural(/(x|ch|ss|sh)\z/i, '\1es')
           inflect.plural(/(stoma|epo)ch\z/i, '\1chs')
           inflect.plural(/(matr|vert|ind)(?:ix|ex)\z/i, '\1ices')
-          inflect.plural(/([m|l])ouse\z/i, '\1ice')
-          inflect.plural(/([m|l])ice\z/i, '\1ice')
+          inflect.plural(/([ml])ouse\z/i, '\1ice')
           inflect.plural(/^(ox)\z/i, '\1en')
-          inflect.plural(/^(oxen)\z/i, '\1')
           inflect.plural(/(quiz)\z/i, '\1zes')
           inflect.plural(/(.*)non\z/i, '\1na')
           inflect.plural(/(.*)ma\z/i, '\1mata')
@@ -71,7 +67,7 @@ module Dry
           inflect.singular(/(m)ovies\z/i, '\1ovie')
           inflect.singular(/(ss)\z/i, '\1')
           inflect.singular(/(x|ch|ss|sh)es\z/i, '\1')
-          inflect.singular(/([m|l])ice\z/i, '\1ouse')
+          inflect.singular(/([ml])ice\z/i, '\1ouse')
           inflect.singular(/(us)(?:es)?\z/i, '\1')
           inflect.singular(/(\b|_|-)([eou])ses\z/i, '\1\2se')
           inflect.singular(/(o)es\z/i, '\1')
@@ -100,9 +96,6 @@ module Dry
           inflect.irregular("foot", "feet")
           inflect.irregular("tooth", "teeth")
           inflect.irregular("goose", "geese")
-
-          # FIXME: this is here because I need to fix the "um" regexp
-          inflect.irregular("forum", "forums")
         end
 
         # @since 0.1.0
