@@ -7,118 +7,124 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ## [Unreleased]
 
+### Added
+
 ### Changed
 
 - Set minimum Ruby version to 3.2 (@alassek)
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+[Unreleased]: https://github.com/dry-rb/dry-inflector/compare/v1.2.0...main
+
+## [1.3.0] - 2026-01-09
+
+
 
 ## [1.2.0] - 2025-01-04
-
 
 ### Changed
 
 - Bumped required Ruby version to 3.1 (@flash-gordon)
 
-[Compare v1.1.0...v1.2.0](https://github.com/dry-rb/dry-inflector/compare/v1.1.0...v1.2.0)
+[1.2.0]: https://github.com/dry-rb/dry-inflector/compare/v1.1.0...v1.2.0
 
 ## [1.1.0] - 2024-07-02
 
-
 ### Added
 
-- Added "DB" as a default acronym (#49) (@timriley)
+- Added "DB" as a default acronym. (@timriley in #49)
 
 ### Fixed
 
-- Fix incorrect inflections on words separated by spaces, underscores or hyphens (#47) (@parndt)
+- Fix incorrect inflections on words separated by spaces, underscores or hyphens. (@parndt in #47)
 
-
-[Compare v1.0.0...v1.1.0](https://github.com/dry-rb/dry-inflector/compare/v1.0.0...v1.1.0)
+[1.1.0]: https://github.com/dry-rb/dry-inflector/compare/v1.0.0...v1.1.0
 
 ## [1.0.0] - 2022-11-04
 
-
 ### Changed
 
-- Bumped version to 1.0.0 (@solnic)
+- Bumped version to 1.0.0. (@solnic)
 
-[Compare v0.3.0...v1.0.0](https://github.com/dry-rb/dry-inflector/compare/v0.3.0...v1.0.0)
+[1.0.0]: https://github.com/dry-rb/dry-inflector/compare/v0.3.0...v1.0.0
 
 ## [0.3.0] - 2022-07-12
 
-
 ### Added
 
-- Add CSV as default acronym (via #43) (@waiting-for-dev)
+- Add CSV as default acronym. (@waiting-for-dev in #43)
 
 ### Changed
 
-- Extra dashes are now omitted when converting to camelcase (via #40) (@postmodern)
+- Extra dashes are now omitted when converting to camelcase. (@postmodern in #40)
 
-[Compare v0.2.1...v0.3.0](https://github.com/dry-rb/dry-inflector/compare/v0.2.1...v0.3.0)
+[0.3.0]: https://github.com/dry-rb/dry-inflector/compare/v0.2.1...v0.3.0
 
 ## [0.2.1] - 2021-06-30
 
-
 ### Added
 
-- Add default acronyms: API and CSRF (#35) (@jodosha)
+- Add default acronyms: API and CSRF. (@jodosha in #35)
 
 ### Fixed
 
-- Fix singularizing -us suffix (issue #33 via #38) (@cllns)
+- Fix singularizing -us suffix. (@cllns in #38)
 
-
-[Compare v0.2.0...v0.2.1](https://github.com/dry-rb/dry-inflector/compare/v0.2.0...v0.2.1)
+[0.2.1]: https://github.com/dry-rb/dry-inflector/compare/v0.2.0...v0.2.1
 
 ## [0.2.0] - 2019-10-13
 
-
 ### Added
 
-- [Abinoam P. Marques Jr. & Andrii Savchenko] Introduced `Dry::Inflector#camelize_upper` and `Dry::Inflector#camelize_lower`. `Dry::Inflector#camelize` is now an alias for `Dry::Inflector#camelize_upper`. ```ruby inflector.camelize_upper("data_mapper") # => "DataMapper"' inflector.camelize_lower("data_mapper") # => "dataMapper"' ```
+- Introduced `Dry::Inflector#camelize_upper` and `Dry::Inflector#camelize_lower`. `Dry::Inflector#camelize` is now an alias for `Dry::Inflector#camelize_upper`. (Abinoam P. Marques Jr. & Andrii Savchenko)
+
+  ```ruby
+  inflector.camelize_upper("data_mapper") # => "DataMapper"
+  inflector.camelize_lower("data_mapper") # => "dataMapper"
+  ``` 
 
 ### Fixed
 
-- [ecnal] Fixed singularization rules for words like "alias" or "status"
+- Fixed singularization rules for words like "alias" or "status". (ecnal)
 
-
-[Compare v0.1.2...v0.2.0](https://github.com/dry-rb/dry-inflector/compare/v0.1.2...v0.2.0)
+[0.2.0]: https://github.com/dry-rb/dry-inflector/compare/v0.1.2...v0.2.0
 
 ## [0.1.2] - 2018-04-25
 
-
 ### Added
 
-- [Gustavo Caso & Nikita Shilnikov] Added support for acronyms
+- Added support for acronyms. (Gustavo Caso & Nikita Shilnikov)
 
-
-[Compare v0.1.1...v0.1.2](https://github.com/dry-rb/dry-inflector/compare/v0.1.1...v0.1.2)
+[0.1.2]: https://github.com/dry-rb/dry-inflector/compare/v0.1.1...v0.1.2
 
 ## [0.1.1] - 2017-11-18
 
-
 ### Fixed
 
-- [Luca Guidi & Abinoam P. Marques Jr.] Ensure `Dry::Inflector#ordinalize` to work for all the numbers from 0 to 100
+- Ensure `Dry::Inflector#ordinalize` to work for all the numbers from 0 to 100. (Luca Guidi & Abinoam P. Marques Jr.)
 
-
-[Compare v0.1.0...v0.1.1](https://github.com/dry-rb/dry-inflector/compare/v0.1.0...v0.1.1)
+[0.1.1]: https://github.com/dry-rb/dry-inflector/compare/v0.1.0...v0.1.1
 
 ## [0.1.0] - 2017-11-17
 
-
 ### Added
 
-- [Luca Guidi] Introduced `Dry::Inflector#pluralize`
-- [Luca Guidi] Introduced `Dry::Inflector#singularize`
-- [Luca Guidi] Introduced `Dry::Inflector#camelize`
-- [Luca Guidi] Introduced `Dry::Inflector#classify`
-- [Luca Guidi] Introduced `Dry::Inflector#tableize`
-- [Luca Guidi] Introduced `Dry::Inflector#dasherize`
-- [Luca Guidi] Introduced `Dry::Inflector#underscore`
-- [Luca Guidi] Introduced `Dry::Inflector#demodulize`
-- [Luca Guidi] Introduced `Dry::Inflector#humanize`
-- [Luca Guidi] Introduced `Dry::Inflector#ordinalize`
-- [Abinoam P. Marques Jr.] Introduced `Dry::Inflector#foreign_key`
-- [Abinoam P. Marques Jr.] Introduced `Dry::Inflector#constantize`
+- Introduced `Dry::Inflector#pluralize`. (Luca Guidi)
+- Introduced `Dry::Inflector#singularize`. (Luca Guidi)
+- Introduced `Dry::Inflector#camelize`. (Luca Guidi)
+- Introduced `Dry::Inflector#classify`. (Luca Guidi)
+- Introduced `Dry::Inflector#tableize`. (Luca Guidi)
+- Introduced `Dry::Inflector#dasherize`. (Luca Guidi)
+- Introduced `Dry::Inflector#underscore`. (Luca Guidi)
+- Introduced `Dry::Inflector#demodulize`. (Luca Guidi)
+- Introduced `Dry::Inflector#humanize`. (Luca Guidi)
+- Introduced `Dry::Inflector#ordinalize`. (Luca Guidi)
+- Introduced `Dry::Inflector#foreign_key`. (Abinoam P. Marques Jr.)
+- Introduced `Dry::Inflector#constantize`. (Abinoam P. Marques Jr.)
