@@ -11,7 +11,6 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Changed
 
-- Set minimum Ruby version to 3.2 (@alassek)
 
 ### Deprecated
 
@@ -25,7 +24,22 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ## [1.3.0] - 2026-01-09
 
+### Changed
 
+- Require Ruby 3.2 or later. (@alassek)
+- Support characters with diacritics. (@cllns in #51)
+- Improve performance of #singularize. (@sandbergja in #53)
+- Remove redundant regexps for default inflections. (@hmaddocks in #59)
+
+### Fixed
+
+- Correctly handle pluralized aconyms in `#underscore`. For example, underscoring "CustomerAPIs" now gives "customer_apis". (@hmaddocks in #54)
+- Correctly singularize "uses" and pluralize "use". (@hmaddocks in #55)
+- Fix singularization of plurals ending in a vowel and "xes", such as "taxes" -> "tax". (@hmaddocks in #56)
+- Fix pluralization of words ending in "ee", such as "fee" -> "fees". (@hmaddocks in #57)
+- Fix singularizing of words like "leaves" and "thieves". (@hmaddocks in #58)
+- Fix pluralization of words ending in "f" that should _not_ have their ending turn into "ves", e.g. "roof"->"roofs" and "chief"->"chiefs". (@hmaddocks in #59)
+- Fix pluralization of "virus" into "viruses". (@hmaddocks in #59)
 
 ## [1.2.0] - 2025-01-04
 
