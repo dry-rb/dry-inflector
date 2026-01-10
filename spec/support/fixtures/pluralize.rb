@@ -60,6 +60,7 @@ module Fixtures
       # ==== bugs, typos and reported issues
       "property_fee" => "property_fees",
       "use" => "uses",
+      "premium" => "premiums",
 
       # ==== rules and most common cases
 
