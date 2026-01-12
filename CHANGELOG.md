@@ -11,7 +11,6 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Changed
 
-
 ### Deprecated
 
 ### Removed
@@ -20,7 +19,15 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Security
 
-[Unreleased]: https://github.com/dry-rb/dry-inflector/compare/v1.2.0...main
+[Unreleased]: https://github.com/dry-rb/dry-inflector/compare/v1.3.1...main
+
+## [1.3.1] - 2026-01-13
+
+### Fixed
+
+- Improve pluralization of "-um" vs "-ium" words. "Premium" is now pluralized correctly. (@hmaddocks in #60)
+
+[1.3.1]: https://github.com/dry-rb/dry-inflector/compare/v1.3.0...v1.3.1
 
 ## [1.3.0] - 2026-01-09
 
@@ -40,6 +47,8 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 - Fix singularizing of words like "leaves" and "thieves". (@hmaddocks in #58)
 - Fix pluralization of words ending in "f" that should _not_ have their ending turn into "ves", e.g. "roof"->"roofs" and "chief"->"chiefs". (@hmaddocks in #59)
 - Fix pluralization of "virus" into "viruses". (@hmaddocks in #59)
+
+[1.3.0]: https://github.com/dry-rb/dry-inflector/compare/v1.2.0...v1.3.0
 
 ## [1.2.0] - 2025-01-04
 
