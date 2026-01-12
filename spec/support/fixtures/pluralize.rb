@@ -60,11 +60,9 @@ module Fixtures
       # ==== bugs, typos and reported issues
       "property_fee" => "property_fees",
       "use" => "uses",
-      "premium" => "premiums",
 
       # ==== rules and most common cases
 
-      "forum" => "forums",
       "hive" => "hives",
       "athlete" => "athletes",
       "dwarf" => "dwarves",
@@ -75,7 +73,6 @@ module Fixtures
       "trash" => "trashes",
       "mash" => "mashes",
       "cross" => "crosses",
-      "erratum" => "errata",
       # FIXME: add -ia => -ium cases
       # FIXME: add -ra => -rum cases
       "ray" => "rays",
@@ -161,8 +158,6 @@ module Fixtures
       "basis" => "bases",
       "diagnosis" => "diagnoses",
       "diagnosis_a" => "diagnosis_as",
-      "datum" => "data",
-      "medium" => "media",
       "node_child" => "node_children",
       "experience" => "experiences",
       "day" => "days",
@@ -201,6 +196,18 @@ module Fixtures
       "criterium" => "criteria",
       "perihelium" => "perihelia",
       "aphelium" => "aphelia",
+      "erratum" => "errata",
+      "datum" => "data",
+      "medium" => "media",
+      # um => ums
+      # https://github.com/hanami/utils/issues/106
+      "album" => "albums",
+      "forum" => "forums",
+      "premium" => "premiums",
+      "geranium" => "geraniums",
+      "aquarium" => "aquariums",
+      "podium" => "podiums",
+      "gymnasium" => "gymnasiums",
       # on => a
       "phenomenon" => "phenomena",
       "prolegomenon" => "prolegomena",
@@ -383,8 +390,6 @@ module Fixtures
       "architecture" => "architectures",
       "car" => "cars",
       "area" => "areas",
-      # https://github.com/hanami/utils/issues/106
-      "album" => "albums",
       # https://github.com/hanami/utils/issues/173
       "kitten" => "kittens",
 
