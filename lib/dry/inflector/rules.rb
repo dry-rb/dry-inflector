@@ -20,8 +20,8 @@ module Dry
         if matching_rule
           word.gsub(matching_rule[0], matching_rule[1])
         else
-          word
-        end.dup
+          word.dup
+        end
       end
 
       # @since 0.1.0
