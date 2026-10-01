@@ -2,7 +2,7 @@
 
 [actions]: https://github.com/dry-rb/dry-inflector/actions
 [chat]: https://discord.gg/naQApPAsZB
-[forum]: https://discourse.hanamirb.org
+[forum]: https://discourse.hanakai.org
 [rubygem]: https://rubygems.org/gems/dry-inflector
 
 # dry-inflector [![Gem Version](https://badge.fury.io/rb/dry-inflector.svg)][rubygem] [![CI Status](https://github.com/dry-rb/dry-inflector/workflows/CI/badge.svg)][actions]
